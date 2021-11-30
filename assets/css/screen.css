@@ -1,0 +1,316 @@
+/*---------------------*/
+/*    HTML ELEMENTS    */
+/*---------------------*/
+/* I don't expect the students to use variables, it just saved me time*/
+:root {
+    --beige: #F2CBBD;
+    --red: #A60303;
+    --dark: #590202;
+    --accent: #BF2A52;
+    --white: #f5f5f5;
+    --title-font: 'Bungee', cursive;
+    --text-font:  'Open Sans', Arial, Helvetica, sans-serif;
+}
+
+body {
+    font-family: var(--text-font);
+    background-color: var(--white);
+    display: flex;
+    flex-flow: nowrap column;
+    height: 100vh;
+    line-height: initial; /* needed because reset.css overwrites the line-height property incorrectly for this */
+}
+
+h1 {
+    font-family: var(--title-font);
+    font-size: 3rem;
+    color: var(--accent);
+    text-shadow: 0.2rem 0.2rem 0.1rem rgba(166, 3, 3, 0.3) ;
+    margin-bottom: 0.5rem;
+    background: url(../media/death.svg) no-repeat left center , url(../media/nuclear-disaster.svg) no-repeat right center;
+    background-size: contain;
+    display: inline-block;
+    padding: 0 3.8rem 0 3.8rem;
+}
+
+p {
+    margin-bottom: 1.5rem;
+    line-height: 140%;
+}
+
+a {
+    color: var(--accent);
+}
+a:hover {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+form {
+    background-color: var(--beige);
+    padding: 2rem;
+}
+label {
+    text-transform: lowercase;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 0.25rem;
+}
+input {
+    width: 100%;
+    height: 3rem;
+    outline: none;
+    font-family: var(--title-font);
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border: 3px solid rgba(166, 3, 3, 0.3);
+    box-sizing: border-box;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.next, .previous, button[type="submit"],#update-statistics {
+    background-color: var(--accent);
+    color: var(--white);
+    text-transform: lowercase;
+    font-family: var(--text-font);
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 1rem;
+    padding: 0.75rem;
+    outline: none;
+    box-shadow: none;
+    display: block;
+    width: max-content;
+}
+
+/* --- General classes --- */
+.hidden {
+    display: none;
+}
+
+.flexcontainer {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+}
+
+.lone {
+
+    margin: 0 0 0 auto;
+}
+
+/*---------------------------------*/
+/* SUCCESS AND THANK YOU OVERRIDES */
+/*---------------------------------*/
+.thankyou {
+    background:  url(../media/heart.svg) no-repeat 30% center, url(../media/heart.svg) no-repeat calc(100% - 30%) center;
+    background-size: 2rem;
+    background-color: rgba(152,182,123,0.2);
+    background-position: center left, center right;
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.success {  background: url(../media/success.svg) no-repeat center center #BBB; background-size: contain;color: #444;}
+.success dl {visibility: hidden}
+.success>ul>li:first-child,.success>ul>li:last-child {background-color: transparent; border-color: transparent}
+p.success {background-image: none; background-color: var(--red); color: var(--white);padding: 0.25rem; margin-bottom: 0;}
+
+/*---------------------*/
+/* CONTAINING ELEMENTS */
+/*---------------------*/
+main {
+    width: 80%;
+    margin: 0 auto 3rem auto;
+}
+
+
+header {
+    padding-top: 1rem;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+nav {
+    background-color: var(--dark);
+    box-shadow: 0.2rem 0.2rem 0.1rem rgba(166, 3, 3, 0.3) ;
+    font-family: var(--title-font);
+}
+
+nav ul  {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+nav ul li {
+    line-height: 200%;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--white);
+}
+
+nav ul li a:hover,  nav ul .active a {
+    color: var(--beige);
+}
+
+footer {
+    background-color: #232226;
+    margin: auto 0 0 0;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+}
+footer h3 {
+    color: var(--white);
+    text-align: center;
+    font-size: 0.7rem;
+    margin-bottom: 0.5rem;
+}
+footer ul {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 90%;
+    margin: 0 auto;
+}
+footer ul li {
+    font-size: 0.7rem;
+    margin-right: 1rem;
+}
+footer ul li a {
+    color: var(--white);
+    display: inline-block;
+    background-color: var(--accent);
+    padding: 0.38rem;
+    border-radius: 0.65rem;
+    text-decoration: none;
+}
+footer ul li a:hover {
+    background-color: var(--red);
+}
+
+section h2, form legend {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 0.1rem 0.1rem 0.1rem rgba(166, 3, 3, 0.3);
+    margin-bottom: 1rem;
+    text-transform: lowercase;
+}
+
+article {
+    flex: 0 1 20rem;
+    margin-bottom: 2rem;
+}
+
+article h3 {
+    font-family: var(--title-font);
+    font-size: 1.2rem;
+    color: var(--red);
+    text-align: center;
+    background-color: var(--beige);
+    box-shadow: 0.2rem 0.2rem 0.1rem rgba(166, 3, 3, 0.3);
+    margin-bottom: 1.5rem;
+}
+article figure {
+    width: 50%;
+    margin: 0 auto;
+    min-height: 7rem;
+}
+
+article dt, article dd {
+    text-transform: lowercase;
+}
+
+article dt {
+    font-weight: bold;
+}
+
+article dd {
+    margin-bottom: 1rem;
+}
+
+article h4 {
+    font-weight: bold;
+}
+
+article>ul {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+article>ul>li:first-child,article>ul>li:last-child  {
+    flex: 0 0 10rem;
+    padding: 0.2rem;
+    box-sizing: border-box;
+}
+article>ul>li:first-child {
+    background-color: #f2f2f2;
+    border-right: 5px #e9e8e8 solid;
+}
+article>ul>li:last-child {
+    background-color: #f0eeee;
+}
+/*------------------------*/
+/* PAGE SPECIFIC ELEMENTS */
+/*------------------------*/
+
+/* --- Submit disaster --- */
+form article.selected {
+    background-color:gold;
+}
+#submit-disaster form {
+
+}
+
+#submit-disaster form legend {
+    text-align: left;
+}
+#submit-disaster form ul {
+    margin-bottom: 1rem;
+}
+#submit-disaster form ul li {
+    padding: 0.25rem;
+}
+#submit-disaster form ul li:nth-child(even){
+    background-color: var(--white);
+}
+
+#submit-disaster form ul li:hover {
+    background-color: var(--accent);
+    color: var(--white);
+    cursor: pointer;
+}
+
+form article {
+    background-color: var(--white);
+    padding: 0.5rem;
+    box-sizing: border-box;
+}
+
+/* --- Your disasters --- */
+#your-disasters .flexcontainer>p, #open-disasters .flexcontainer>p{
+    text-align: center;
+    flex: 1 1 auto;
+}
+
+#update-statistics {
+    display: block;
+    margin: 0 auto;
+    width: max-content;
+    text-decoration: none;
+    margin-bottom: 2rem;
+}
+#update-statistics:hover {
+    background-color: var(--red);
+}

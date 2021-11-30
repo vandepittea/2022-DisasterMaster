@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Disaster Master</title>
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Open+Sans:wght@400;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/reset.css" type="text/css"/>
+    <link rel="stylesheet" href="assets/css/screen.css" type="text/css"/>
+
+</head>
+<body>
+
+<header>
+    <h1>Disaster Master</h1>
+    <nav>
+        <ul>
+            <li class="active"><a href="index.html">Log disaster</a></li>
+            <li><a href="support-a-disaster.html">Support disaster</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+    <section id="submit-disaster">
+        <h2>Submit a disaster</h2>
+        <p>Have you recently been exposed to a disaster? Looking for support, aid or just being heard? Fill out the form
+            below and you'll be able to leverage our platform for maximum reach</p>
+        <p>Upon completion, you'll be able to consult  <a href="support-a-disaster.html">all disasterTypes</a>. You can
+            make a difference! </p>
+
+        <form>
+            <fieldset id="disaster-location">
+                <legend>Where did it happen?</legend>
+                <label for="location">Country:</label>
+                <input type="text" id="location" name="location"/>
+                <ul>
+
+                </ul>
+                <button class="next lone" data-target="disaster-type">Select disaster type</button>
+            </fieldset>
+            <fieldset id="disaster-type" class="hidden">
+                <legend>What type of event occurred?</legend>
+                <div class="flexcontainer disasters">
+                    <!-- insert articles here -->
+                </div>
+
+                <div class="flexcontainer">
+                    <button class="previous" data-target="disaster-location">Change the location</button>
+                    <button class="next" data-target="disaster-aid" id="show-aid">Show me what help I can get</button>
+                </div>
+            </fieldset>
+            <fieldset id="disaster-aid" class="hidden">
+                <legend>What type of aid are you looking for?</legend>
+                <div class="flexcontainer aids">
+                    <!-- insert articles here -->
+                </div>
+                <div class="flexcontainer">
+                    <button class="previous" data-target="disaster-type">Change my disaster type</button>
+                    <button type="submit">Ask for help</button>
+                </div>
+            </fieldset>
+        </form>
+    </section>
+</main>
+<footer>
+    <h3>Icon attributions</h3>
+    <ul>
+        <li><a href="https://www.flaticon.com/authors/smalllikeart" title="smalllikeart">smalllikeart</a></li>
+        <li><a href="https://www.vecteezy.com/members/paintingred" title="paintingred">paintingred</a></li>
+
+        <li><a href="https://bolundbergillustration.tumblr.com/post/129629524075/from-the-archives-bono-u2-portrait-sunglasses" title="bo lundberg">bo lundberg</a></li>
+        <li><a href="https://www.vecteezy.com/members/skaterjob" title="skaterjob">skaterjob</a></li>
+        <li><a href="https://www.vecteezy.com/members/jemastock" title="jemastock">jemastock</a></li>
+        <li><a href="https://www.vecteezy.com/members/xiayamoon" title="xiayamoon">xiayamoon</a></li>
+
+    </ul>
+</footer>
+
+
+
+</body>
+</html>
