@@ -1,7 +1,12 @@
 "use strict";
 // Determine parameters for this function yourself
-function renderDisasters(???) {
+function renderDisasters() {
+    const $div = document.querySelector(`.disasters`);
+    $div.innerHTML = "";
 
+    for(const disasterType of disasterTypes){
+        $div.insertAdjacentHTML('beforeend', renderBasicInfo(disasterType.name, disasterType.category, disasterType.level));
+    }
 }
 
 function renderBasicInfo(disaster, category, level){
