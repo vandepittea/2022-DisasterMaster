@@ -40,14 +40,12 @@ function navigate(e){
     const $source = document.querySelector("fieldset:not(.hidden)");
     const $target = document.querySelector(`#${target}`);
 
-    if (target === "disaster-type" && selectedCountry !== undefined){
+    if ((target === "disaster-aid" && selectedCountry !== undefined && selectedDisaster !== undefined) || target === "disaster-location" || (target === "disaster-type" && selectedCountry !== undefined)){
         $target.classList.remove("hidden");
         $source.classList.add("hidden");
-        renderDisasters(".disasters", disasterTypes);
-    }
-    else if ((target === "disaster-aid" && selectedCountry !== undefined && selectedDisaster !== undefined) || target === "disaster-location"){
-        $target.classList.remove("hidden");
-        $source.classList.add("hidden");
+        if (target === "disaster-type" && e.target.classList.contains("next")) {
+            renderDisasters(".disasters", disasterTypes);
+        }
     }
 }
 
