@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', init);
 
 function init() {
-
+    document.querySelector("#disaster-location input").addEventListener('input', suggestCountry);
 }
 
 function initSubmitDisaster(){
