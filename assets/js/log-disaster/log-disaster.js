@@ -44,7 +44,7 @@ function navigate(e){
         $source.classList.add("hidden");
 
         if(target === "disaster-type"){
-            renderDisasters();
+            renderDisasters(".disasters", disasterTypes);
         }
     }
 }

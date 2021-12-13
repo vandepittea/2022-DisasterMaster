@@ -1,11 +1,11 @@
 "use strict";
 // Determine parameters for this function yourself
-function renderDisasters() {
-    const $div = document.querySelector(`.disasters`);
-    $div.innerHTML = "";
+function renderDisasters(location, array) {
+    const $location = document.querySelector(location);
+    $location.innerHTML = "";
 
-    for(const disasterType of disasterTypes){
-        $div.insertAdjacentHTML('beforeend', renderBasicInfo(disasterType.name, disasterType.category, disasterType.level));
+    for(const element of array){
+        $location.insertAdjacentHTML('beforeend', renderBasicInfo(element.name, element.category, element.level));
     }
 }
 
