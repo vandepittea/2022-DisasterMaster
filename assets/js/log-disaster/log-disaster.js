@@ -1,9 +1,16 @@
 "use strict";
 
 function suggestCountry(e){
-    /* search */
+    const result = countries.filter(containsCountry);
 
-    fillCountriesList(countries, "#disaster-location");
+    fillCountriesList(result, "#disaster-location");
+}
+
+function containsCountry(country){
+    country = country.toLowerCase();
+    const suggest = document.querySelector("#location").value.toLowerCase();
+    const regex = new RegExp(`.*${suggest}.*`);
+    return regex.test(country);
 }
 
 function fillCountriesList(countries, id){
