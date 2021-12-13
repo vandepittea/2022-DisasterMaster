@@ -49,8 +49,16 @@ function navigate(e){
     }
 }
 function selectDisaster(e){
+    if (e.target.closest("article")) {
+        if (e.target.closest("article").nodeName.toLowerCase() === 'article') {
+            const selectedArticles = document.querySelectorAll('.selected');
+            selectedArticles.forEach((selectedArticle) => {
+                selectedArticle.classList.remove('selected');
+            });
 
-
+            e.target.closest("article").classList.add("selected");
+        }
+    }
 }
 
 function showAid(e){
