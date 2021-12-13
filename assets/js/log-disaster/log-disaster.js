@@ -1,6 +1,7 @@
 "use strict";
 
 let selectedCountry;
+let selectedDisaster;
 
 function suggestCountry(e){
     const result = countries.filter(containsCountry);
@@ -35,29 +36,33 @@ function selectCountry(e){
 function navigate(e){
     e.preventDefault();
 
-    if(selectedCountry !== undefined){
-        const target = e.target.dataset.target;
-        const $source = document.querySelector("fieldset:not(.hidden)");
-        const $target = document.querySelector(`#${target}`);
+    const target = e.target.dataset.target;
+    const $source = document.querySelector("fieldset:not(.hidden)");
+    const $target = document.querySelector(`#${target}`);
 
+    if (target === "disaster-type" && selectedCountry !== undefined){
         $target.classList.remove("hidden");
         $source.classList.add("hidden");
-
-        if(target === "disaster-type"){
-            renderDisasters(".disasters", disasterTypes);
-        }
+        renderDisasters(".disasters", disasterTypes);
+    }
+    else if ((target === "disaster-aid" && selectedCountry !== undefined && selectedDisaster !== undefined) || target === "disaster-location"){
+        $target.classList.remove("hidden");
+        $source.classList.add("hidden");
     }
 }
 
 function selectDisaster(e){
-    if (e.target.closest("article")) {
-        if (e.target.closest("article").nodeName.toLowerCase() === 'article') {
+    const $article = e.target.closest("article");
+
+    if ($article) {
+        if ($article.nodeName.toLowerCase() === 'article') {
             const selectedArticles = document.querySelectorAll('.selected');
             selectedArticles.forEach((selectedArticle) => {
                 selectedArticle.classList.remove('selected');
             });
 
-            e.target.closest("article").classList.add("selected");
+            $article.classList.add("selected");
+            selectedDisaster = $article.nodeName;
         }
     }
 }
