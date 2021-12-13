@@ -31,7 +31,14 @@ function selectCountry(e){
 }
 
 function navigate(e){
+    e.preventDefault();
 
+    const target = e.target.dataset.target;
+    const $source = document.querySelector("fieldset:not(hidden)");
+    const $target = document.querySelector(`#${target}`);
+
+    $target.classList.remove("hidden");
+    $source.classList.add("hidden");
 }
 function selectDisaster(e){
 
