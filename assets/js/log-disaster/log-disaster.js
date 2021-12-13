@@ -1,5 +1,7 @@
 "use strict";
 
+let selectedCountry;
+
 function suggestCountry(e){
     const result = countries.filter(containsCountry);
 
@@ -24,7 +26,7 @@ function fillCountriesList(countries, id){
 
 function selectCountry(e){
     if (e.target.nodeName.toLowerCase() === 'li') {
-        const selectedCountry = e.target.innerHTML;
+        selectedCountry = e.target.innerHTML;
         document.querySelector("#location").value = selectedCountry;
         fillCountriesList("", "#disaster-location");
     }
@@ -33,12 +35,14 @@ function selectCountry(e){
 function navigate(e){
     e.preventDefault();
 
-    const target = e.target.dataset.target;
-    const $source = document.querySelector("fieldset:not(hidden)");
-    const $target = document.querySelector(`#${target}`);
+    if(selectedCountry !== undefined){
+        const target = e.target.dataset.target;
+        const $source = document.querySelector("fieldset:not(hidden)");
+        const $target = document.querySelector(`#${target}`);
 
-    $target.classList.remove("hidden");
-    $source.classList.add("hidden");
+        $target.classList.remove("hidden");
+        $source.classList.add("hidden");
+    }
 }
 function selectDisaster(e){
 
