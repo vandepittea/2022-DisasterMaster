@@ -23,7 +23,8 @@ function loadFromStorage(key) {
  ******************/
 
 function nameToImageOrID(name){
-
+    name = name.replaceAll(" ", "-");
+    return name.toLowerCase();
 }
 
 function idToName(id){
