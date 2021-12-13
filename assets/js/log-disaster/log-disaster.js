@@ -23,7 +23,11 @@ function fillCountriesList(countries, id){
 }
 
 function selectCountry(e){
-
+    if (e.target.nodeName.toLowerCase() === 'li') {
+        const selectedCountry = e.target.innerHTML;
+        document.querySelector("#location").value = selectedCountry;
+        fillCountriesList("", "#disaster-location");
+    }
 }
 
 function navigate(e){
