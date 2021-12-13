@@ -37,7 +37,7 @@ function navigate(e){
 
     if(selectedCountry !== undefined){
         const target = e.target.dataset.target;
-        const $source = document.querySelector("fieldset:not(hidden)");
+        const $source = document.querySelector("fieldset:not(.hidden)");
         const $target = document.querySelector(`#${target}`);
 
         $target.classList.remove("hidden");
@@ -48,6 +48,7 @@ function navigate(e){
         }
     }
 }
+
 function selectDisaster(e){
     if (e.target.closest("article")) {
         if (e.target.closest("article").nodeName.toLowerCase() === 'article') {
