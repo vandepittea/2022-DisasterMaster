@@ -10,10 +10,12 @@ function renderDisasters() {
 }
 
 function renderBasicInfo(disaster, category, level){
+    const imageName = nameToImageOrID(disaster);
+
     return `<article>
         <h3>${disaster}</h3>
         <figure>
-            <img src="images/flood.svg" alt="${disaster}" title="${disaster}">
+            <img src="images/${imageName}.svg" alt="${disaster}" title="${disaster}">
         </figure>
         <dl>
             <dt>Category:</dt>
