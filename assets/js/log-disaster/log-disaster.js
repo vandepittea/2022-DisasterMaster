@@ -42,6 +42,10 @@ function navigate(e){
 
         $target.classList.remove("hidden");
         $source.classList.add("hidden");
+
+        if(target === "disaster-type"){
+            renderDisasters();
+        }
     }
 }
 function selectDisaster(e){
