@@ -47,7 +47,7 @@ function navigate(e){
             renderDisasters(".disasters", disasterTypes);
         }
         if (target === "disaster-aid" && e.target.classList.contains("next")) {
-            showAid(e);
+            renderAvailableAid(showAid(), ".aids");
         }
     }
 }
