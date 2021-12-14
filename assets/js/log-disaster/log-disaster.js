@@ -2,6 +2,7 @@
 
 let selectedCountry;
 let selectedDisaster;
+let selectedAid;
 
 function suggestCountry(e){
     const result = countries.filter(containsCountry);
@@ -57,12 +58,7 @@ function selectDisaster(e){
 
     if ($article) {
         if ($article.nodeName.toLowerCase() === 'article') {
-            const selectedArticles = document.querySelectorAll('.selected');
-            selectedArticles.forEach((selectedArticle) => {
-                selectedArticle.classList.remove('selected');
-            });
-
-            $article.classList.add("selected");
+            selectArticle($article);
             selectedDisaster = idToName($article.id);
         }
     }
@@ -86,9 +82,24 @@ function showAid(e){
     return availableAid;
 }
 
-
 function selectAid(e){
+    const $article = e.target.closest("article");
 
+    if ($article) {
+        if ($article.nodeName.toLowerCase() === 'article') {
+            selectArticle($article);
+            selectedAid = idToName($article.id);
+        }
+    }
 }
 
 // Add additional functions below
+
+function selectArticle(article){
+    const selectedArticles = document.querySelectorAll('.selected');
+    selectedArticles.forEach((selectedArticle) => {
+        selectedArticle.classList.remove('selected');
+    });
+
+    article.classList.add("selected");
+}
