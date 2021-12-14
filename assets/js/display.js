@@ -1,33 +1,33 @@
 "use strict";
 // Determine parameters for this function yourself
-function renderDisasters(location, array) {
+function renderDisasters(location, disasters) {
     const $location = document.querySelector(location);
     $location.innerHTML = "";
 
-    for(const element of array){
-        $location.insertAdjacentHTML('beforeend', renderBasicInfo(element.name, element.category, element.level));
+    for(const disaster of disasters){
+        const imageOrIdName = nameToImageOrID(disaster.name);
+        $location.insertAdjacentHTML('beforeend', renderBasicInfo(disaster));
+        document.querySelector(`#${imageOrIdName} dl`).insertAdjacentHTML('beforeend', renderAid(disaster));
     }
 }
 
-function renderBasicInfo(disaster, category, level){
-    const imageName = nameToImageOrID(disaster);
+function renderBasicInfo(disaster){
+    const imageOrIdName = nameToImageOrID(disaster.name);
 
-    return `<article>
-        <h3>${disaster}</h3>
+    return `<article id="${imageOrIdName}">
+        <h3>${disaster.name}</h3>
         <figure>
-            <img src="images/${imageName}.svg" alt="${disaster}" title="${disaster}">
+            <img src="images/${imageOrIdName}.svg" alt="${disaster.name}" title="${disaster.name}">
         </figure>
-        <dl>
-            <dt>Category:</dt>
-            <dd>${category}</dd>
-            <dt>Level</dt>
-            <dd>${level}</dd>
-        </dl>
+        <dl></dl>
     </article>`
 }
 
 function renderAid(disaster){
-
+    return `<dt>Category:</dt>
+            <dd>${disaster.category}</dd>
+            <dt>Level</dt>
+            <dd>${disaster.level}</dd>`
 }
 
 function displayThankYou(selector, message) {
