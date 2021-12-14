@@ -58,7 +58,7 @@ function selectDisaster(e){
 
     if ($article) {
         if ($article.nodeName.toLowerCase() === 'article') {
-            selectArticle($article);
+            selectArticle($article, ".disasters");
             selectedDisaster = idToName($article.id);
         }
     }
@@ -87,7 +87,7 @@ function selectAid(e){
 
     if ($article) {
         if ($article.nodeName.toLowerCase() === 'article') {
-            selectArticle($article);
+            selectArticle($article, ".aids");
             selectedAid = idToName($article.id);
         }
     }
@@ -95,8 +95,8 @@ function selectAid(e){
 
 // Add additional functions below
 
-function selectArticle(article){
-    const selectedArticles = document.querySelectorAll('.selected');
+function selectArticle(article, selector){
+    const selectedArticles = document.querySelectorAll(`${selector} .selected`);
     selectedArticles.forEach((selectedArticle) => {
         selectedArticle.classList.remove('selected');
     });
