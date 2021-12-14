@@ -1,7 +1,7 @@
 "use strict";
 // Determine parameters for this function yourself
-function renderDisasters(location, disasters) {
-    const $location = document.querySelector(location);
+function renderDisasters(selector, disasters) {
+    const $location = document.querySelector(selector);
     $location.innerHTML = "";
 
     for(const disaster of disasters){
@@ -35,7 +35,13 @@ function displayThankYou(selector, message) {
 }
 
 function renderAvailableAid(aid, selector) {
+    for(const assistance of aid){
+        document.querySelector(selector).insertAdjacentHTML('beforeend', renderBasicInfo(assistance));
 
+        const disasterTypesString = assistance.disasterTypes.join();
+        const idName = nameToImageOrID(assistance.name);
+        document.querySelector(`#${idName} dl`).insertAdjacentHTML('beforeend', `<dt>applies to</dt><dd>${disasterTypesString}</dd>`);
+    }
 }
 
 function displayFeedbackDisasterSaved(){
