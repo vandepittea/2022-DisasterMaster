@@ -46,6 +46,9 @@ function navigate(e){
         if (target === "disaster-type" && e.target.classList.contains("next")) {
             renderDisasters(".disasters", disasterTypes);
         }
+        if (target === "disaster-aid" && e.target.classList.contains("next")) {
+            showAid(e);
+        }
     }
 }
 
@@ -60,13 +63,27 @@ function selectDisaster(e){
             });
 
             $article.classList.add("selected");
-            selectedDisaster = $article.nodeName;
+            selectedDisaster = idToName($article.id);
         }
     }
 }
 
 function showAid(e){
+    let availableAid = [];
 
+    for (const disaster of disasterTypes){
+        if (disaster.name === selectedDisaster){
+            for (const assistance of aid){
+                for (const disasterType of assistance.disasterTypes){
+                    if (disasterType === disaster.category && assistance.minimalLevel <= disaster.level){
+                        availableAid.push(assistance);
+                    }
+                }
+            }
+        }
+    }
+
+    return availableAid;
 }
 
 
