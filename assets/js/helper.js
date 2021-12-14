@@ -28,6 +28,7 @@ function nameToImageOrID(name){
 }
 
 function idToName(id){
-
+    id = id.replaceAll("-", " ");
+    return id.charAt(0).toUpperCase() + id.slice(1);
 }
 // Add additional functions below
