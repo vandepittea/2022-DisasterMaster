@@ -35,8 +35,11 @@ function displayThankYou(selector, message) {
 }
 
 function renderAvailableAid(aid, selector) {
+    const $location = document.querySelector(selector)
+    $location.innerHTML = "";
+
     for(const assistance of aid){
-        document.querySelector(selector).insertAdjacentHTML('beforeend', renderBasicInfo(assistance));
+        $location.insertAdjacentHTML('beforeend', renderBasicInfo(assistance));
 
         const disasterTypesString = assistance.disasterTypes.join();
         const idName = nameToImageOrID(assistance.name);
