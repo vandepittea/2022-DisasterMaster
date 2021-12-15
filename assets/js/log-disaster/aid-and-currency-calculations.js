@@ -1,7 +1,7 @@
 "use strict";
 
 function determineAid(disaster, aid){
-
+    return aid.length * disaster.length * 100;
 }
 
 function determineCurrency(disaster, country){
