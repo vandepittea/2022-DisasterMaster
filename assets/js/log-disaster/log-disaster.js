@@ -5,14 +5,14 @@ let selectedDisaster;
 let selectedAid;
 
 function suggestCountry(e){
-    const result = countries.filter(containsCountry);
+    const suggest = e.target.value.toLowerCase();
+    const result = countries.filter(containsCountry.bind(this, suggest));
 
     fillCountriesList(result, "#disaster-location");
 }
 
-function containsCountry(country){
+function containsCountry(suggest, country){
     country = country.toLowerCase();
-    const suggest = document.querySelector("#location").value.toLowerCase();
     const regex = new RegExp(`.*${suggest}.*`);
     return regex.test(country);
 }
