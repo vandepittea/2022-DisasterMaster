@@ -15,14 +15,26 @@ function submitDisaster(e, disaster, countryName, aidName, aidGoal, currencyGoal
 }
 
 function saveDisaster(disaster){
+    let doubleDisasterInSameCountry = false;
     let submittedDisastersLocalStorage = loadFromStorage(config.submittedDisastersKey);
 
     if (submittedDisastersLocalStorage == null){
         submittedDisastersLocalStorage = [];
     }
 
-    submittedDisastersLocalStorage.push(disaster);
-    saveToStorage(config.submittedDisastersKey, submittedDisastersLocalStorage);
+    for(const submittedDisaster of submittedDisastersLocalStorage){
+        if(submittedDisaster.name === disaster.name && submittedDisaster.location === disaster.location){
+            doubleDisasterInSameCountry = true;
+        }
+    }
+
+    if(doubleDisasterInSameCountry === false){
+        submittedDisastersLocalStorage.push(disaster);
+        saveToStorage(config.submittedDisastersKey, submittedDisastersLocalStorage);
+    }
+    else{
+        console.log("ERROR: double disaster in same country");
+    }
 }
 
 // Add additional functions below
