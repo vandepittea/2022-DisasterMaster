@@ -51,6 +51,10 @@ function navigate(e){
             renderAvailableAid(showAid(), ".aids");
         }
     }
+    if(selectedAid !== undefined){
+        const disasterObject = selectDisasterObject();
+        saveDisaster(submitDisaster(e, disasterObject, selectedCountry, selectedAid, determineAid(disasterObject, aid), determineCurrency(disasterObject, selectedCountry)));
+    }
 }
 
 function selectDisaster(e){
