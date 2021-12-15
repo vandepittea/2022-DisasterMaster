@@ -51,7 +51,7 @@ function navigate(e){
             renderAvailableAid(showAid(), ".aids");
         }
     }
-    if(selectedAid !== undefined){
+    if(selectedAid !== undefined && selectedDisaster !== undefined && selectedCountry !== undefined){
         const disasterObject = selectDisasterObject();
         saveDisaster(submitDisaster(e, disasterObject, selectedCountry, selectedAid, determineAid(showAid(), aid), determineCurrency(disasterObject, selectedCountry)));
     }
