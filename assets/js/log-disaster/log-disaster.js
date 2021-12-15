@@ -45,10 +45,6 @@ function navigate(e){
         $target.classList.remove("hidden");
         $source.classList.add("hidden");
     }
-    if(selectedAid !== undefined && target === undefined){
-        const disasterObject = selectDisasterObject();
-        saveDisaster(submitDisaster(e, disasterObject, selectedCountry, selectedAid, determineAid(showAid(), aid), determineCurrency(disasterObject, selectedCountry)));
-    }
 }
 
 function selectDisaster(e){
@@ -65,21 +61,23 @@ function selectDisaster(e){
 function showAid(e){
     e.preventDefault();
 
-    let availableAid = [];
-    const disaster = selectDisasterObject();
+    if(selectedDisaster !== undefined){
+        let availableAid = [];
+        const disaster = selectDisasterObject();
 
-    for (const assistance of aid){
-        for (const disasterType of assistance.disasterTypes){
-            if (disasterType === disaster.category && assistance.minimalLevel <= disaster.level){
-                availableAid.push(assistance);
+        for (const assistance of aid){
+            for (const disasterType of assistance.disasterTypes){
+                if (disasterType === disaster.category && assistance.minimalLevel <= disaster.level){
+                    availableAid.push(assistance);
+                }
             }
         }
+
+        renderAvailableAid(availableAid, ".aids");
+        selectArticleWhenRerender(selectedAid);
+
+        return availableAid;
     }
-
-    renderAvailableAid(availableAid, ".aids");
-    selectArticleWhenRerender(selectedAid);
-
-    return availableAid;
 }
 
 function selectAid(e){
