@@ -7,6 +7,7 @@ function init() {
     document.querySelector("#disaster-location ul").addEventListener('click', selectCountry);
     document.querySelector(".disasters").addEventListener('click', selectDisaster);
     document.querySelector(".aids").addEventListener('click', selectAid);
+    document.querySelector("#show-aid").addEventListener('click', showAid);
 
     const buttons = document.querySelectorAll("button")
     buttons.forEach((button) => {
