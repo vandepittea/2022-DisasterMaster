@@ -44,10 +44,6 @@ function navigate(e){
     if ((target === "disaster-aid" && selectedCountry !== undefined && selectedDisaster !== undefined) || target === "disaster-location" || (target === "disaster-type" && selectedCountry !== undefined)){
         $target.classList.remove("hidden");
         $source.classList.add("hidden");
-        if (target === "disaster-type" && e.target.classList.contains("next")) {
-            renderDisasters(".disasters", disasterTypes);
-            selectArticleWhenRerender(selectedDisaster);
-        }
     }
     if(selectedAid !== undefined && target === undefined){
         const disasterObject = selectDisasterObject();
@@ -123,4 +119,11 @@ function selectDisasterObject(){
             return disaster;
         }
     }
+}
+
+function showDisasters(e){
+    e.preventDefault();
+
+    renderDisasters(".disasters", disasterTypes);
+    selectArticleWhenRerender(selectedDisaster);
 }
