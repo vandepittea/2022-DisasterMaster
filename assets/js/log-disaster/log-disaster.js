@@ -48,10 +48,6 @@ function navigate(e){
             renderDisasters(".disasters", disasterTypes);
             selectArticleWhenRerender(selectedDisaster);
         }
-        if (target === "disaster-aid" && e.target.classList.contains("next")) {
-            renderAvailableAid(showAid(), ".aids");
-            selectArticleWhenRerender(selectedAid);
-        }
     }
     if(selectedAid !== undefined && target === undefined){
         const disasterObject = selectDisasterObject();
@@ -71,8 +67,9 @@ function selectDisaster(e){
 }
 
 function showAid(e){
-    let availableAid = [];
+    e.preventDefault();
 
+    let availableAid = [];
     const disaster = selectDisasterObject();
 
     for (const assistance of aid){
@@ -82,6 +79,9 @@ function showAid(e){
             }
         }
     }
+
+    renderAvailableAid(availableAid, ".aids");
+    selectArticleWhenRerender(selectedAid);
 
     return availableAid;
 }
