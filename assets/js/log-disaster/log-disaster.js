@@ -46,9 +46,11 @@ function navigate(e){
         $source.classList.add("hidden");
         if (target === "disaster-type" && e.target.classList.contains("next")) {
             renderDisasters(".disasters", disasterTypes);
+            selectArticleWhenRerender(selectedDisaster);
         }
         if (target === "disaster-aid" && e.target.classList.contains("next")) {
             renderAvailableAid(showAid(), ".aids");
+            selectArticleWhenRerender(selectedAid);
         }
     }
     if(selectedAid !== undefined && target === undefined){
@@ -104,6 +106,15 @@ function selectArticle(article, selector){
     });
 
     article.classList.add("selected");
+}
+
+function selectArticleWhenRerender(article){
+    if(article !== undefined){
+        const idArticle = nameToImageOrID(article)
+        if(document.querySelector(`#${idArticle}`)){
+            document.querySelector(`#${idArticle}`).classList.add("selected");
+        }
+    }
 }
 
 function selectDisasterObject(){
