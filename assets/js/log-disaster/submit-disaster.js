@@ -15,7 +15,14 @@ function submitDisaster(e, disaster, countryName, aidName, aidGoal, currencyGoal
 }
 
 function saveDisaster(disaster){
+    let submittedDisastersLocalStorage = loadFromStorage(config.submittedDisastersKey);
 
+    if (submittedDisastersLocalStorage == null){
+        submittedDisastersLocalStorage = [];
+    }
+
+    submittedDisastersLocalStorage.push(disaster);
+    saveToStorage(config.submittedDisastersKey, submittedDisastersLocalStorage);
 }
 
 // Add additional functions below
