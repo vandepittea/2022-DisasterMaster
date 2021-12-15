@@ -67,14 +67,12 @@ function selectDisaster(e){
 function showAid(e){
     let availableAid = [];
 
-    for (const disaster of disasterTypes){
-        if (disaster.name === selectedDisaster){
-            for (const assistance of aid){
-                for (const disasterType of assistance.disasterTypes){
-                    if (disasterType === disaster.category && assistance.minimalLevel <= disaster.level){
-                        availableAid.push(assistance);
-                    }
-                }
+    const disaster = selectDisasterObject();
+
+    for (const assistance of aid){
+        for (const disasterType of assistance.disasterTypes){
+            if (disasterType === disaster.category && assistance.minimalLevel <= disaster.level){
+                availableAid.push(assistance);
             }
         }
     }
@@ -102,4 +100,12 @@ function selectArticle(article, selector){
     });
 
     article.classList.add("selected");
+}
+
+function selectDisasterObject(){
+    for (const disaster of disasterTypes){
+        if (disaster.name === selectedDisaster){
+            return disaster;
+        }
+    }
 }
