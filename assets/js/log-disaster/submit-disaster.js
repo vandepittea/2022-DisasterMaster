@@ -5,7 +5,7 @@ function submitDisaster(e){
 
     if(selectedAid !== undefined){ // global variable
         const disasterObject = selectDisasterObject();
-        const disaster = saveDisaster(disasterObject, selectedCountry, selectedAid, determineAid(showAid(e), aid), determineCurrency(disasterObject, selectedCountry));
+        const disaster = saveDisaster(disasterObject, selectedCountry, selectedAid, determineAid(determineAvailableAid(), aid), determineCurrency(disasterObject, selectedCountry));
 
         const submittedDisastersLocalStorage = loadExistingArrayFromStorageOrCreateNewArray(config.submittedDisastersKey);
 
