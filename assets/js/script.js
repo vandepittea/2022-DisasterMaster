@@ -27,7 +27,7 @@ function initSubmitDisaster(){
 }
 
 function initSupportDisasters() {
-    /*document.querySelector("nav .active a").addEventListener('click', showSupportableDisasters);*/
+    showSupportableDisasters();
 }
 
 // No other functions in this file aside from the ones already declared!
