@@ -71,11 +71,24 @@ input {
     box-sizing: border-box;
 }
 
+#name {
+    width: 50%;
+}
+
+select {
+    font-family: var(--title-font);
+    font-size: 1rem;
+    outline: none;
+    border: 3px solid rgba(166, 3, 3, 0.3);
+    box-sizing: border-box;
+    display: inline-block;
+}
+
 button:hover {
     cursor: pointer;
 }
 
-.next, .previous, button[type="submit"],#update-statistics {
+.next, .previous, button[type="submit"],#update-statistics,#sort {
     background-color: var(--accent);
     color: var(--white);
     text-transform: lowercase;
@@ -89,6 +102,11 @@ button:hover {
     box-shadow: none;
     display: block;
     width: max-content;
+}
+
+#sort {
+    display: inline-block;
+    margin-left: 0.5em;
 }
 
 /* --- General classes --- */
@@ -161,6 +179,11 @@ nav ul li a {
 
 nav ul li a:hover,  nav ul .active a {
     color: var(--beige);
+}
+
+aside div{
+    width: 49%;
+    display: inline-block;
 }
 
 footer {
