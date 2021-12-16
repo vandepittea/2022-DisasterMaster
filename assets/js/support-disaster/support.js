@@ -17,10 +17,14 @@ function clickSort(e){
     showSupportableDisasters();
 }
 
-function showSupportableDisasters(){
-    const submittedDisastersLocalStorage = loadFromMemoryOrLocalStorage(config.submittedDisastersKey);
-
-    toggleSort(submittedDisastersLocalStorage);
+function showSupportableDisasters(result){
+    if(result === undefined){
+        const submittedDisastersLocalStorage = loadFromMemoryOrLocalStorage(config.submittedDisastersKey);
+        toggleSort(submittedDisastersLocalStorage);
+    }
+    else{
+        toggleSort(result);
+    }
 }
 
 function loadFromMemoryOrLocalStorage(key){
@@ -34,7 +38,7 @@ function loadFromMemoryOrLocalStorage(key){
 }
 
 function toggleSort(array){
-    if (blnAscDesc === 1){
+    /*if (blnAscDesc === 1){
         sortListAsc("#submitted-disasters div", array);
         changeButtonText("#sort", blnAscDesc);
         blnAscDesc = 0;
@@ -43,7 +47,8 @@ function toggleSort(array){
         sortListDesc("#submitted-disasters div", array);
         changeButtonText("#sort", blnAscDesc);
         blnAscDesc = 1;
-    }
+    }*/
+    sortListAsc("#submitted-disasters div", array);
 }
 
 function sortListAsc(id, array){
@@ -99,4 +104,18 @@ function changeButtonText(id, blnAscDesc){
     else{
         document.querySelector(`button${id}`).innerHTML = "ascending";
     }
+}
+
+function searchDisaster(){
+    const submittedDisastersLocalStorage = loadFromMemoryOrLocalStorage(config.submittedDisastersKey);
+    const result = submittedDisastersLocalStorage.filter(containsDisaster);
+
+    showSupportableDisasters(result);
+}
+
+function containsDisaster(disaster){
+    disaster = disaster.name.toLowerCase();
+    const search = document.querySelector("#name").value.toLowerCase();
+    const regex = new RegExp(`.*${search}.*`);
+    return regex.test(disaster);
 }
