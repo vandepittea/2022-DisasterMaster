@@ -61,22 +61,9 @@ function selectDisaster(e){
 function showAid(e){
     e.preventDefault();
 
-    if(selectedDisaster !== undefined){
-        let availableAid = [];
-        const disaster = selectDisasterObject();
-
-        for (const assistance of aid){
-            for (const disasterType of assistance.disasterTypes){
-                if (disasterType === disaster.category && assistance.minimalLevel <= disaster.level){
-                    availableAid.push(assistance);
-                }
-            }
-        }
-
-        renderAvailableAid(availableAid, ".aids");
+    if(selectedDisaster !== undefined) {
+        renderAvailableAid(determineAvailableAid(), ".aids");
         selectArticleWhenRerender(selectedAid);
-
-        return availableAid;
     }
 }
 
@@ -124,4 +111,19 @@ function showDisasters(e){
 
     renderDisasters(".disasters", disasterTypes);
     selectArticleWhenRerender(selectedDisaster);
+}
+
+function determineAvailableAid(){
+    let availableAid = [];
+    const disaster = selectDisasterObject();
+
+    for (const assistance of aid) {
+        for (const disasterType of assistance.disasterTypes) {
+            if (disasterType === disaster.category && assistance.minimalLevel <= disaster.level) {
+                availableAid.push(assistance);
+            }
+        }
+    }
+
+    return availableAid;
 }
