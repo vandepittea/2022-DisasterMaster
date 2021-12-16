@@ -11,17 +11,14 @@ function supportDisaster(e) {
 }
 
 // Add additional functions below
-function clickSort(e){
-    e.preventDefault();
+function loadFromMemoryOrLocalStorage(key){
+    let submittedDisastersLocalStorage = loadFromStorage(key);
 
-    if(blnAscDesc === 1){
-        blnAscDesc = 0;
-    }
-    else{
-        blnAscDesc = 1;
+    if (submittedDisastersLocalStorage == null){
+        submittedDisastersLocalStorage = submittedDisasters;
     }
 
-    searchDisaster();
+    return submittedDisastersLocalStorage;
 }
 
 function showSupportableDisasters(result){
@@ -34,14 +31,17 @@ function showSupportableDisasters(result){
     }
 }
 
-function loadFromMemoryOrLocalStorage(key){
-    let submittedDisastersLocalStorage = loadFromStorage(key);
+function clickSort(e){
+    e.preventDefault();
 
-    if (submittedDisastersLocalStorage == null){
-        submittedDisastersLocalStorage = submittedDisasters;
+    if(blnAscDesc === 1){
+        blnAscDesc = 0;
+    }
+    else{
+        blnAscDesc = 1;
     }
 
-    return submittedDisastersLocalStorage;
+    searchDisaster();
 }
 
 function toggleSort(array){
