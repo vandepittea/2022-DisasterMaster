@@ -28,6 +28,7 @@ function initSubmitDisaster(){
 
 function initSupportDisasters() {
     showSupportableDisasters();
+    document.querySelector("#sort").addEventListener('click', clickSort);
 }
 
 // No other functions in this file aside from the ones already declared!
