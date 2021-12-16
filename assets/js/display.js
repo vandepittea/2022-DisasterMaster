@@ -5,10 +5,12 @@ function renderDisasters(selector, disasters) {
     $location.innerHTML = "";
 
     for(const disaster of disasters){
-        const idName = determineIdDisaster(disaster, selector);
         $location.insertAdjacentHTML('beforeend', renderBasicInfo(disaster, selector));
-        document.querySelector(`#${idName} dl`).insertAdjacentHTML('beforeend', renderExtraInfo(disaster, selector));
-        document.querySelector(`#${idName} ul`).insertAdjacentHTML('beforeend', renderAid(disaster, selector));
+
+        const idName = determineIdDisaster(disaster, selector);
+        const $locationExtraInfo = document.querySelector(`#${idName} dl`);
+        $locationExtraInfo.insertAdjacentHTML('beforeend', renderExtraInfo(disaster, selector));
+        $locationExtraInfo.insertAdjacentHTML('afterend', renderAid(disaster, selector));
     }
 }
 
@@ -22,26 +24,30 @@ function renderBasicInfo(disaster, selector){
             <img src="images/${imageName}.svg" alt="${disaster.name}" title="${disaster.name}">
         </figure>
         <dl></dl>
-        <ul></ul>
     </article>`
 }
 
 function renderAid(disaster, selector){
     if(selector === "#submitted-disasters div"){
-        return `<li>
-                <h4>Aid:</h4>
-                <ul>
-                    <li>progress: <span>${disaster.aidProgress}</span></li>
-                    <li>goal: <span>${disaster.aidGoal}</span></li>
-                </ul>
-            </li>
-            <li>
-                <h4>Currency</h4>
-                <ul>
-                    <li>progress: <span>${disaster.currencyProgress}</span></li>
-                    <li>goal: <span>${disaster.aidGoal}</span></li>
-                </ul>
-            </li>`
+        return `<ul>
+                    <li>
+                        <h4>Aid:</h4>
+                        <ul>
+                            <li>progress: <span>${disaster.aidProgress}</span></li>
+                            <li>goal: <span>${disaster.aidGoal}</span></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h4>Currency</h4>
+                        <ul>
+                            <li>progress: <span>${disaster.currencyProgress}</span></li>
+                            <li>goal: <span>${disaster.aidGoal}</span></li>
+                        </ul>
+                    </li>
+                </ul>`
+    }
+    else{
+        return '';
     }
 }
 
