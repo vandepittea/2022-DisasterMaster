@@ -5,20 +5,21 @@ function renderDisasters(selector, disasters) {
     $location.innerHTML = "";
 
     for(const disaster of disasters){
-        const imageOrIdName = nameToImageOrID(disaster.name);
-        $location.insertAdjacentHTML('beforeend', renderBasicInfo(disaster));
-        document.querySelector(`#${imageOrIdName} dl`).insertAdjacentHTML('beforeend', renderExtraInfo(disaster, selector));
-        document.querySelector(`#${imageOrIdName} ul`).insertAdjacentHTML('beforeend', renderAid(disaster, selector));
+        const idName = determineIdDisaster(disaster, selector);
+        $location.insertAdjacentHTML('beforeend', renderBasicInfo(disaster, selector));
+        document.querySelector(`#${idName} dl`).insertAdjacentHTML('beforeend', renderExtraInfo(disaster, selector));
+        document.querySelector(`#${idName} ul`).insertAdjacentHTML('beforeend', renderAid(disaster, selector));
     }
 }
 
-function renderBasicInfo(disaster){
-    const imageOrIdName = nameToImageOrID(disaster.name);
+function renderBasicInfo(disaster, selector){
+    const imageName = nameToImageOrID(disaster.name);
+    const idName = determineIdDisaster(disaster, selector);
 
-    return `<article id="${imageOrIdName}">
+    return `<article id="${idName}">
         <h3>${disaster.name}</h3>
         <figure>
-            <img src="images/${imageOrIdName}.svg" alt="${disaster.name}" title="${disaster.name}">
+            <img src="images/${imageName}.svg" alt="${disaster.name}" title="${disaster.name}">
         </figure>
         <dl></dl>
         <ul></ul>
@@ -81,5 +82,14 @@ function renderExtraInfo(disaster, selector){
     else{
         return `${basicAid}
         ${extraAid}`;
+    }
+}
+
+function determineIdDisaster(disaster, selector){
+    if(selector === "#submitted-disasters div"){
+        return nameToImageOrID(`${disaster.name} ${disaster.location}`);
+    }
+    else{
+        return nameToImageOrID(disaster.name);
     }
 }
