@@ -3,8 +3,12 @@
 document.addEventListener('DOMContentLoaded', init);
 
 function init() {
+    if(document.URL.includes("index.html")){
         initSubmitDisaster();
+    }
+    if(document.URL.includes("support-a-disaster.html")){
         initSupportDisasters();
+    }
 }
 
 function initSubmitDisaster(){
@@ -23,7 +27,7 @@ function initSubmitDisaster(){
 }
 
 function initSupportDisasters() {
-
+    /*document.querySelector("nav .active a").addEventListener('click', showSupportableDisasters);*/
 }
 
 // No other functions in this file aside from the ones already declared!
