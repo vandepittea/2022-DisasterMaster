@@ -14,7 +14,14 @@ function supportDisaster(e) {
 function clickSort(e){
     e.preventDefault();
 
-    showSupportableDisasters();
+    if(blnAscDesc === 1){
+        blnAscDesc = 0;
+    }
+    else{
+        blnAscDesc = 1;
+    }
+
+    searchDisaster();
 }
 
 function showSupportableDisasters(result){
@@ -38,17 +45,14 @@ function loadFromMemoryOrLocalStorage(key){
 }
 
 function toggleSort(array){
-    /*if (blnAscDesc === 1){
+    if (blnAscDesc === 1){
         sortListAsc("#submitted-disasters div", array);
         changeButtonText("#sort", blnAscDesc);
-        blnAscDesc = 0;
     }
     else{
         sortListDesc("#submitted-disasters div", array);
         changeButtonText("#sort", blnAscDesc);
-        blnAscDesc = 1;
-    }*/
-    sortListAsc("#submitted-disasters div", array);
+    }
 }
 
 function sortListAsc(id, array){
