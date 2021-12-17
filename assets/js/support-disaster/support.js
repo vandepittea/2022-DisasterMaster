@@ -63,10 +63,12 @@ function toggleSort(array){
 
 function sortListAsc(id, array){
     renderDisasters(id, array.sort(compareAscending));
+    checkDisastersForSuccess();
 }
 
 function sortListDesc(id, array){
     renderDisasters(id, array.sort(compareDescending));
+    checkDisastersForSuccess();
 }
 
 function compareDescending(a, b){
@@ -128,4 +130,11 @@ function containsDisaster(disaster){
     const search = document.querySelector("#name").value.toLowerCase();
     const regex = new RegExp(`.*${search}.*`);
     return regex.test(disaster);
+}
+
+function checkDisastersForSuccess(){
+    const disasters = document.querySelectorAll("article");
+    disasters.forEach((disaster) => {
+        displayFeedbackDisasterSaved(disaster);
+    });
 }
