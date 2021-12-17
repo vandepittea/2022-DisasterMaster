@@ -41,10 +41,17 @@ function idToName(id, deleteLocation){
     return id;
 }
 // Add additional functions below
-function selectObject(array, selectedElement){
+function selectObject(array, selectedElement, selectedCountry=undefined){
     for (const element of array){
         if (element.name === selectedElement){
-            return element;
+            if(selectedCountry !== undefined){
+                if(element.country === selectedCountry){
+                    return element
+                }
+            }
+            else{
+                return element;
+            }
         }
     }
 }
@@ -58,4 +65,22 @@ function doubleCheckDisasterName(disasterName){
     else{
         return disasterName;
     }
+}
+
+function idToCountry(id){
+    id = id.replaceAll("-", " ");
+    id = id.substring(id.indexOf(" ") + 1);
+    const arrayWords = id.split(" ");
+
+    for(let i = 0; i < arrayWords.length; i++){
+        arrayWords[i] = arrayWords[i] = arrayWords[i].charAt(0).toUpperCase() + arrayWords[i].slice(1);
+    }
+
+    id = arrayWords.join(" ");
+
+    if(countries.includes(id) === false){
+        id = idToCountry(id);
+    }
+
+    return id;
 }
