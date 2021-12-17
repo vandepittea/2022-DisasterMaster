@@ -107,8 +107,14 @@ function determineIdDisaster(disaster, selector){
 }
 
 function showConfirmationMessage(idDisaster, disasterObject){
-    const aidName = disasterObject.requestedAid;
+    const $location = document.querySelector(`#${idDisaster} ul`);
 
+    const $success = document.querySelector(`#${idDisaster} .success`);
+    if($success){
+        $success.parentNode.removeChild($success);
+    }
+
+    const aidName = disasterObject.requestedAid;
     const aidObject = selectObject(aid, aidName);
-    document.querySelector(`#${idDisaster} ul`).insertAdjacentHTML('afterend', `<p class="success">${aidObject.confirmationMessage}</p>`);
+    $location.insertAdjacentHTML('afterend', `<p class="success">${aidObject.confirmationMessage}</p>`);
 }
