@@ -11,15 +11,9 @@ function supportDisaster(e) {
 
     if ($article) {
         if ($article.nodeName.toLowerCase() === 'article') {
-            const idDisaster = $article.id;
-            const disasterName = idToName(idDisaster, true);
-            const selectedDisaster = selectObject(loadFromMemoryOrLocalStorage(config.submittedDisastersKey), disasterName);
-            if(selectedDisaster.aidProgress >= selectedDisaster.aidGoal || selectedDisaster.currencyProgress >= selectedDisaster.currencyGoal){
-                $article.classList.add("success");
-                showConfirmationMessage(idDisaster, selectedDisaster);
+                displayFeedbackDisasterSaved($article);
             }
         }
-    }
 }
 
 // Add additional functions below
@@ -134,11 +128,4 @@ function containsDisaster(disaster){
     const search = document.querySelector("#name").value.toLowerCase();
     const regex = new RegExp(`.*${search}.*`);
     return regex.test(disaster);
-}
-
-function showConfirmationMessage(idDisaster, disasterObject){
-    const aidName = disasterObject.requestedAid;
-
-    const aidObject = selectObject(aid, aidName);
-    document.querySelector(`#${idDisaster} ul`).insertAdjacentHTML('afterend', `<p class="success">${aidObject.confirmationMessage}</p>`);
 }
