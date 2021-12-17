@@ -24,7 +24,16 @@ function supportDisaster(e) {
     if ($article) {
         if ($article.nodeName.toLowerCase() === 'article') {
             if(e.target.nodeName.toLowerCase() === 'input' && e.target.type === "submit") {
-                displayFeedbackDisasterSaved($article);
+                const valueButton = e.target.value;
+                const idDisaster = $article.id;
+                const disasterName = idToName(idDisaster, true);
+                const countryName = idToCountry(idDisaster);
+                const submittedDisastersLocalStorage = loadFromMemoryOrLocalStorage(config.submittedDisastersKey);
+                const selectedDisaster = selectObject(submittedDisastersLocalStorage, disasterName, countryName);
+
+                grantOfSupport(submittedDisastersLocalStorage, selectedDisaster, valueButton);
+                searchDisaster();
+                displayFeedbackDisasterSaved($article, selectedDisaster, idDisaster);
             }
         }
     }
@@ -149,6 +158,42 @@ function containsDisaster(disaster){
 function checkDisastersForSuccess(){
     const disasters = document.querySelectorAll("article");
     disasters.forEach((disaster) => {
-        displayFeedbackDisasterSaved(disaster);
+        const idDisaster = disaster.id;
+        const disasterName = idToName(idDisaster, true);
+        const countryName = idToCountry(idDisaster);
+        const submittedDisastersLocalStorage = loadFromMemoryOrLocalStorage(config.submittedDisastersKey);
+        const selectedDisaster = selectObject(submittedDisastersLocalStorage, disasterName, countryName);
+        displayFeedbackDisasterSaved(disaster, selectedDisaster, idDisaster);
     });
+}
+
+function grantOfSupport(array, selectedDisaster, valueButton){
+    if(valueButton === "Have my support"){
+        const aidPackage = document.querySelector("#support-package").value;
+        let aidProgress = selectedDisaster.aidProgress;
+
+        if(aidPackage === "food"){
+            aidProgress += 10;
+        }
+        else if(aidPackage === "medicine"){
+            aidProgress += 50;
+        }
+        else{
+            aidProgress += 100;
+        }
+
+        const indexArray = array.indexOf(selectedDisaster);
+        array[indexArray].aidProgress = aidProgress;
+
+        const checkLocalStorageArrayExists = loadFromStorage(config.submittedDisastersKey);
+        if(checkLocalStorageArrayExists == null){
+            submittedDisasters = array;
+            console.log(submittedDisasters);
+        }
+        else{
+            saveToStorage(config.submittedDisastersKey, array);
+        }
+    }
+
+
 }
