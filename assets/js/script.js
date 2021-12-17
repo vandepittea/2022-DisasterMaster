@@ -30,6 +30,7 @@ function initSupportDisasters() {
     showSupportableDisasters();
     document.querySelector("#sort").addEventListener('click', clickSort);
     document.querySelector("#name").addEventListener('input', searchDisaster);
+    //document.querySelector("#submitted-disasters div").addEventListener('click', supportDisaster);
 }
 
 // No other functions in this file aside from the ones already declared!
