@@ -194,13 +194,19 @@ function grantOfAid(selectedDisaster, array, indexArray){
 
 function grantOfCurrency(selectedDisaster, array, indexArray){
     const currency = document.querySelector("#currency").value;
-    let currencyProgress = selectedDisaster.currencyProgress;
 
-    currencyProgress += parseInt(currency);
+    if(currency >= 1 && currency <= 9999){
+        let currencyProgress = selectedDisaster.currencyProgress;
 
-    array[indexArray].currencyProgress = currencyProgress;
+        currencyProgress += parseInt(currency);
 
-    saveToLocalStorageOrToMemory(array);
+        array[indexArray].currencyProgress = currencyProgress;
+
+        saveToLocalStorageOrToMemory(array);
+    }
+    else{
+        console.log("ERROR: the currency must be a minimum of 1 and a maximum of 9999.");
+    }
 }
 
 function saveToLocalStorageOrToMemory(array){
