@@ -71,7 +71,8 @@ function renderAvailableAid(aid, selector) {
 function displayFeedbackDisasterSaved(article){
     const idDisaster = article.id;
     const disasterName = idToName(idDisaster, true);
-    const selectedDisaster = selectObject(loadFromMemoryOrLocalStorage(config.submittedDisastersKey), disasterName);
+    const countryName = idToCountry(idDisaster);
+    const selectedDisaster = selectObject(loadFromMemoryOrLocalStorage(config.submittedDisastersKey), disasterName, countryName);
     if(selectedDisaster.aidProgress >= selectedDisaster.aidGoal || selectedDisaster.currencyProgress >= selectedDisaster.currencyGoal) {
         article.classList.add("success");
         showConfirmationMessage(idDisaster, selectedDisaster);
