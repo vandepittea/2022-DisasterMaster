@@ -27,8 +27,15 @@ function nameToImageOrID(name){
     return name.toLowerCase();
 }
 
-function idToName(id){
+function idToName(id, deleteLocation){
     id = id.replaceAll("-", " ");
-    return id.charAt(0).toUpperCase() + id.slice(1);
+    id = id.charAt(0).toUpperCase() + id.slice(1);
+
+    if(deleteLocation === true){
+        const indexLastSpace = id.lastIndexOf(" ");
+        id = id.substring(0, indexLastSpace);
+    }
+
+    return id;
 }
 // Add additional functions below
