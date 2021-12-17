@@ -112,7 +112,7 @@ function showConfirmationMessage(idDisaster, disasterObject){
     const aidObject = selectObject(aid, aidName);
     const addCode =`<p class="success">${aidObject.confirmationMessage}</p>`;
 
-    showExtraInformationAfterUlDisaster(idDisaster, ".success", addCode);
+    showExtraInformationAfterUlDisaster(`#${idDisaster}`, ".success", addCode);
 }
 
 function showForm(idDisaster){
@@ -129,13 +129,13 @@ function showForm(idDisaster){
                 <input type="submit" value="Take my money!"/>
             </form>`;
 
-    showExtraInformationAfterUlDisaster(idDisaster, "form", form)
+    showExtraInformationAfterUlDisaster(`#${idDisaster}`, "form", form)
 }
 
 function showExtraInformationAfterUlDisaster(idDisaster, deleteElement, addCode){
-    const $location = document.querySelector(`#${idDisaster} ul`);
+    const $location = document.querySelector(`${idDisaster} ul`);
 
-    const $delete = document.querySelector(`#${idDisaster} ${deleteElement}`);
+    const $delete = document.querySelector(`${idDisaster} ${deleteElement}`);
     if($delete){
         $delete.parentNode.removeChild($delete);
     }
