@@ -4,7 +4,7 @@ function submitDisaster(e){
     e.preventDefault();
 
     if(selectedAid !== undefined){ // global variable
-        const disasterObject = selectDisasterObject();
+        const disasterObject = selectObject(disasterTypes, selectedDisaster);
         const disaster = saveDisaster(disasterObject, selectedCountry, selectedAid, determineAid(determineAvailableAid(), aid), determineCurrency(disasterObject, selectedCountry));
 
         const submittedDisastersLocalStorage = loadExistingArrayFromStorageOrCreateNewArray(config.submittedDisastersKey);
@@ -43,6 +43,8 @@ function submitArrayOrError(condition, submittedArrayLocalStorage, arrayItem, ke
     if(condition === false){
         submittedArrayLocalStorage.push(arrayItem);
         saveToStorage(key, submittedArrayLocalStorage);
+        document.querySelector("#submit-disaster form").classList.add("hidden");
+        displayThankYou("#submit-disaster p + p", "Thank you for your submission");
     }
     else{
         console.log("ERROR: double disaster in same country");
