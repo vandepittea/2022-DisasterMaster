@@ -34,6 +34,8 @@ function idToName(id, deleteLocation){
     if(deleteLocation === true){
         const indexLastSpace = id.lastIndexOf(" ");
         id = id.substring(0, indexLastSpace);
+
+        id = doubleCheckDisasterName(id);
     }
 
     return id;
@@ -44,5 +46,16 @@ function selectObject(array, selectedElement){
         if (element.name === selectedElement){
             return element;
         }
+    }
+}
+
+function doubleCheckDisasterName(disasterName){
+    const disasterObject = selectObject(loadFromMemoryOrLocalStorage(config.submittedDisastersKey), disasterName);
+
+    if(disasterObject === undefined){
+        return idToName(disasterName, true);
+    }
+    else{
+        return disasterName;
     }
 }
