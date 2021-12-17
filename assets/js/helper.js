@@ -39,3 +39,10 @@ function idToName(id, deleteLocation){
     return id;
 }
 // Add additional functions below
+function selectObject(array, selectedElement){
+    for (const element of array){
+        if (element.name === selectedElement){
+            return element;
+        }
+    }
+}
