@@ -98,14 +98,6 @@ function selectArticleWhenRerender(article){
     }
 }
 
-function selectDisasterObject(){
-    for (const disaster of disasterTypes){
-        if (disaster.name === selectedDisaster){
-            return disaster;
-        }
-    }
-}
-
 function showDisasters(e){
     e.preventDefault();
 
@@ -115,7 +107,7 @@ function showDisasters(e){
 
 function determineAvailableAid(){
     let availableAid = [];
-    const disaster = selectDisasterObject();
+    const disaster = selectObject(disasterTypes, selectedDisaster);
 
     for (const assistance of aid) {
         for (const disasterType of assistance.disasterTypes) {
