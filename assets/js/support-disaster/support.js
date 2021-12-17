@@ -201,9 +201,9 @@ function grantOfCurrency(selectedDisaster, array, indexArray){
     const currency = document.querySelector("#currency").value;
     let currencyProgress = selectedDisaster.currencyProgress;
 
-    currencyProgress += currency;
+    currencyProgress += parseInt(currency);
 
-    array[indexArray].currencyProgress = parseInt(currencyProgress);
+    array[indexArray].currencyProgress = currencyProgress;
 
     saveToLocalStorageOrToMemory(array);
 }
