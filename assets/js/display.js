@@ -52,7 +52,9 @@ function renderAid(disaster, selector){
 }
 
 function displayThankYou(selector, message) {
+    const thankYouMessage = `<p class="thankyou">${message}</p>`;
 
+    document.querySelector(selector).insertAdjacentHTML('afterend', thankYouMessage);
 }
 
 function renderAvailableAid(aid, selector) {
@@ -68,10 +70,7 @@ function renderAvailableAid(aid, selector) {
     }
 }
 
-function displayFeedbackDisasterSaved(article){
-    const idDisaster = article.id;
-    const disasterName = idToName(idDisaster, true);
-    const countryName = idToCountry(idDisaster);
+function displayFeedbackDisasterSaved(article, idDisaster, disasterName, countryName){
     const submittedDisastersLocalStorage = loadFromMemoryOrLocalStorage(config.submittedDisastersKey);
     const selectedDisaster = selectObject(submittedDisastersLocalStorage, disasterName, countryName);
 
