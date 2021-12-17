@@ -9,6 +9,7 @@ function selectSupportableDisaster(e) {
 
     if ($article) {
         if ($article.nodeName.toLowerCase() === 'article') {
+            showExtraInformationAfterUlDisaster("", "form", "");
             showForm($article.id);
         }
     }
