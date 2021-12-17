@@ -10,6 +10,11 @@ function selectSupportableDisaster(e) {
 
     if ($article && $form == null) {
         if ($article.nodeName.toLowerCase() === 'article') {
+            const $thankYou = document.querySelector(".thankyou");
+            if($thankYou){
+                $thankYou.remove();
+            }
+
             showExtraInformationAfterUlDisaster("main", "form", "");
             showForm($article.id);
         }
