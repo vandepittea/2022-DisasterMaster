@@ -3,7 +3,15 @@
 let blnAscDesc = 1;
 
 function selectSupportableDisaster(e) {
+    e.preventDefault();
 
+    const $article = e.target.closest("article");
+
+    if ($article) {
+        if ($article.nodeName.toLowerCase() === 'article') {
+            showForm($article.id);
+        }
+    }
 }
 
 function supportDisaster(e) {
