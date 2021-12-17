@@ -25,15 +25,10 @@ function supportDisaster(e) {
         if ($article.nodeName.toLowerCase() === 'article') {
             if(e.target.nodeName.toLowerCase() === 'input' && e.target.type === "submit") {
                 const valueButton = e.target.value;
-                const idDisaster = $article.id;
-                const disasterName = idToName(idDisaster, true);
-                const countryName = idToCountry(idDisaster);
-                const submittedDisastersLocalStorage = loadFromMemoryOrLocalStorage(config.submittedDisastersKey);
-                const selectedDisaster = selectObject(submittedDisastersLocalStorage, disasterName, countryName);
 
-                grantOfSupport(submittedDisastersLocalStorage, selectedDisaster, valueButton);
+                grantOfSupport($article, valueButton);
                 searchDisaster();
-                displayFeedbackDisasterSaved($article, selectedDisaster, idDisaster);
+                displayFeedbackDisasterSaved($article);
             }
         }
     }
@@ -158,23 +153,23 @@ function containsDisaster(disaster){
 function checkDisastersForSuccess(){
     const disasters = document.querySelectorAll("article");
     disasters.forEach((disaster) => {
-        const idDisaster = disaster.id;
-        const disasterName = idToName(idDisaster, true);
-        const countryName = idToCountry(idDisaster);
-        const submittedDisastersLocalStorage = loadFromMemoryOrLocalStorage(config.submittedDisastersKey);
-        const selectedDisaster = selectObject(submittedDisastersLocalStorage, disasterName, countryName);
-        displayFeedbackDisasterSaved(disaster, selectedDisaster, idDisaster);
+        displayFeedbackDisasterSaved(disaster);
     });
 }
 
-function grantOfSupport(array, selectedDisaster, valueButton){
-    const indexArray = array.indexOf(selectedDisaster);
+function grantOfSupport(article, valueButton){
+    const idDisaster = article.id;
+    const disasterName = idToName(idDisaster, true);
+    const countryName = idToCountry(idDisaster);
+    const submittedDisastersLocalStorage = loadFromMemoryOrLocalStorage(config.submittedDisastersKey);
+    const selectedDisaster = selectObject(submittedDisastersLocalStorage, disasterName, countryName);
+    const indexArray = submittedDisastersLocalStorage.indexOf(selectedDisaster);
 
     if(valueButton === "Have my support"){
-        grantOfAid(selectedDisaster, array, indexArray);
+        grantOfAid(selectedDisaster, submittedDisastersLocalStorage, indexArray);
     }
     else{
-        grantOfCurrency(selectedDisaster, array, indexArray);
+        grantOfCurrency(selectedDisaster, submittedDisastersLocalStorage, indexArray);
     }
 }
 
