@@ -41,7 +41,7 @@ function renderAid(disaster, selector){
                         <h4>Currency</h4>
                         <ul>
                             <li>progress: <span>${disaster.currencyProgress}</span></li>
-                            <li>goal: <span>${disaster.aidGoal}</span></li>
+                            <li>goal: <span>${disaster.currencyGoal}</span></li>
                         </ul>
                     </li>
                 </ul>`
@@ -68,7 +68,13 @@ function renderAvailableAid(aid, selector) {
     }
 }
 
-function displayFeedbackDisasterSaved(article, selectedDisaster, idDisaster){
+function displayFeedbackDisasterSaved(article){
+    const idDisaster = article.id;
+    const disasterName = idToName(idDisaster, true);
+    const countryName = idToCountry(idDisaster);
+    const submittedDisastersLocalStorage = loadFromMemoryOrLocalStorage(config.submittedDisastersKey);
+    const selectedDisaster = selectObject(submittedDisastersLocalStorage, disasterName, countryName);
+
     if(selectedDisaster.aidProgress >= selectedDisaster.aidGoal || selectedDisaster.currencyProgress >= selectedDisaster.currencyGoal) {
         article.classList.add("success");
         showConfirmationMessage(idDisaster, selectedDisaster);
