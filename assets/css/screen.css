@@ -75,7 +75,7 @@ input {
     width: 50%;
 }
 
-select {
+#sort-options {
     font-family: var(--title-font);
     font-size: 1rem;
     outline: none;
