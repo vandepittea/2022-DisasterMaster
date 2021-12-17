@@ -53,7 +53,7 @@ function selectDisaster(e){
     if ($article) {
         if ($article.nodeName.toLowerCase() === 'article') {
             selectArticle($article, ".disasters");
-            selectedDisaster = idToName($article.id);
+            selectedDisaster = idToName($article.id, false);
         }
     }
 }
@@ -73,7 +73,7 @@ function selectAid(e){
     if ($article) {
         if ($article.nodeName.toLowerCase() === 'article') {
             selectArticle($article, ".aids");
-            selectedAid = idToName($article.id);
+            selectedAid = idToName($article.id, false);
         }
     }
 }
