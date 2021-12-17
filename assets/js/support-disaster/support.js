@@ -24,11 +24,15 @@ function supportDisaster(e) {
     if ($article) {
         if ($article.nodeName.toLowerCase() === 'article') {
             if(e.target.nodeName.toLowerCase() === 'input' && e.target.type === "submit") {
+                const idDisaster = $article.id;
+                const disasterName = idToName(idDisaster, true);
+                const countryName = idToCountry(idDisaster);
                 const valueButton = e.target.value;
 
-                grantOfSupport($article, valueButton);
+                grantOfSupport($article, valueButton, disasterName, countryName);
                 searchDisaster();
-                displayFeedbackDisasterSaved($article);
+                displayThankYou(`#${idDisaster} ul`, "Thank you for your submission");
+                displayFeedbackDisasterSaved($article, idDisaster, disasterName, countryName);
             }
         }
     }
@@ -153,14 +157,14 @@ function containsDisaster(disaster){
 function checkDisastersForSuccess(){
     const disasters = document.querySelectorAll("article");
     disasters.forEach((disaster) => {
-        displayFeedbackDisasterSaved(disaster);
+        const idDisaster = disaster.id;
+        const disasterName = idToName(idDisaster, true);
+        const countryName = idToCountry(idDisaster);
+        displayFeedbackDisasterSaved(disaster, idDisaster, disasterName, countryName);
     });
 }
 
-function grantOfSupport(article, valueButton){
-    const idDisaster = article.id;
-    const disasterName = idToName(idDisaster, true);
-    const countryName = idToCountry(idDisaster);
+function grantOfSupport(article, valueButton, disasterName, countryName){
     const submittedDisastersLocalStorage = loadFromMemoryOrLocalStorage(config.submittedDisastersKey);
     const selectedDisaster = selectObject(submittedDisastersLocalStorage, disasterName, countryName);
     const indexArray = submittedDisastersLocalStorage.indexOf(selectedDisaster);
