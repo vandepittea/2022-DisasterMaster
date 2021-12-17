@@ -10,7 +10,7 @@ function selectSupportableDisaster(e) {
 
     if ($article && $form == null) {
         if ($article.nodeName.toLowerCase() === 'article') {
-            showExtraInformationAfterUlDisaster("", "form", "");
+            showExtraInformationAfterUlDisaster("main", "form", "");
             showForm($article.id);
         }
     }
@@ -169,31 +169,40 @@ function checkDisastersForSuccess(){
 
 function grantOfSupport(array, selectedDisaster, valueButton){
     if(valueButton === "Have my support"){
-        const aidPackage = document.querySelector("#support-package").value;
-        let aidProgress = selectedDisaster.aidProgress;
+        grantOfAid(selectedDisaster, array);
+    }
+    else{
 
-        if(aidPackage === "food"){
-            aidProgress += 10;
-        }
-        else if(aidPackage === "medicine"){
-            aidProgress += 50;
-        }
-        else{
-            aidProgress += 100;
-        }
+    }
+}
 
-        const indexArray = array.indexOf(selectedDisaster);
-        array[indexArray].aidProgress = aidProgress;
+function grantOfAid(selectedDisaster, array){
+    const aidPackage = document.querySelector("#support-package").value;
+    let aidProgress = selectedDisaster.aidProgress;
 
-        const checkLocalStorageArrayExists = loadFromStorage(config.submittedDisastersKey);
-        if(checkLocalStorageArrayExists == null){
-            submittedDisasters = array;
-            console.log(submittedDisasters);
-        }
-        else{
-            saveToStorage(config.submittedDisastersKey, array);
-        }
+    if(aidPackage === "food"){
+        aidProgress += 10;
+    }
+    else if(aidPackage === "medicine"){
+        aidProgress += 50;
+    }
+    else{
+        aidProgress += 100;
     }
 
+    const indexArray = array.indexOf(selectedDisaster);
+    array[indexArray].aidProgress = aidProgress;
 
+    saveToLocalStorageOrToMemory(array);
+}
+
+function saveToLocalStorageOrToMemory(array){
+    const checkLocalStorageArrayExists = loadFromStorage(config.submittedDisastersKey);
+    if(checkLocalStorageArrayExists == null){
+        submittedDisasters = array;
+        console.log(submittedDisasters);
+    }
+    else{
+        saveToStorage(config.submittedDisastersKey, array);
+    }
 }
