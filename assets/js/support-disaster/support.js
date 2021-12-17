@@ -7,7 +7,18 @@ function selectSupportableDisaster(e) {
 }
 
 function supportDisaster(e) {
+    const $article = e.target.closest("article");
 
+    if ($article) {
+        if ($article.nodeName.toLowerCase() === 'article') {
+            const idDisaster = $article.id;
+            const disasterName = idToName(idDisaster, true);
+            const selectedDisaster = selectObject(loadFromMemoryOrLocalStorage(config.submittedDisastersKey), disasterName);
+            if(selectedDisaster.aidProgress >= selectedDisaster.aidGoal || selectedDisaster.currencyProgress >= selectedDisaster.currencyGoal){
+                $article.classList.add("success");
+            }
+        }
+    }
 }
 
 // Add additional functions below
