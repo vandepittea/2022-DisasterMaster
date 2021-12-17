@@ -68,11 +68,7 @@ function renderAvailableAid(aid, selector) {
     }
 }
 
-function displayFeedbackDisasterSaved(article){
-    const idDisaster = article.id;
-    const disasterName = idToName(idDisaster, true);
-    const countryName = idToCountry(idDisaster);
-    const selectedDisaster = selectObject(loadFromMemoryOrLocalStorage(config.submittedDisastersKey), disasterName, countryName);
+function displayFeedbackDisasterSaved(article, selectedDisaster, idDisaster){
     if(selectedDisaster.aidProgress >= selectedDisaster.aidGoal || selectedDisaster.currencyProgress >= selectedDisaster.currencyGoal) {
         article.classList.add("success");
         showConfirmationMessage(idDisaster, selectedDisaster);
@@ -119,9 +115,9 @@ function showForm(idDisaster){
     const form = `<form> 
                 <label for="support-package">donate aid packages</label>
                 <select id="support-package">
-                    <option>Food</option>
-                    <option>Medicine</option>
-                    <option>Diplomats</option>
+                    <option value="food">Food</option>
+                    <option value="medicine">Medicine</option>
+                    <option value="diplomats">Diplomats</option>
                 </select>
                 <input type="submit" value="Have my support"/>
                 <label for="currency">donate currency</label>
