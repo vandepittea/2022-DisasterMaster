@@ -168,15 +168,17 @@ function checkDisastersForSuccess(){
 }
 
 function grantOfSupport(array, selectedDisaster, valueButton){
+    const indexArray = array.indexOf(selectedDisaster);
+
     if(valueButton === "Have my support"){
-        grantOfAid(selectedDisaster, array);
+        grantOfAid(selectedDisaster, array, indexArray);
     }
     else{
-
+        grantOfCurrency(selectedDisaster, array, indexArray);
     }
 }
 
-function grantOfAid(selectedDisaster, array){
+function grantOfAid(selectedDisaster, array, indexArray){
     const aidPackage = document.querySelector("#support-package").value;
     let aidProgress = selectedDisaster.aidProgress;
 
@@ -190,8 +192,18 @@ function grantOfAid(selectedDisaster, array){
         aidProgress += 100;
     }
 
-    const indexArray = array.indexOf(selectedDisaster);
     array[indexArray].aidProgress = aidProgress;
+
+    saveToLocalStorageOrToMemory(array);
+}
+
+function grantOfCurrency(selectedDisaster, array, indexArray){
+    const currency = document.querySelector("#currency").value;
+    let currencyProgress = selectedDisaster.currencyProgress;
+
+    currencyProgress += currency;
+
+    array[indexArray].currencyProgress = parseInt(currencyProgress);
 
     saveToLocalStorageOrToMemory(array);
 }
