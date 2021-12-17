@@ -6,8 +6,9 @@ function selectSupportableDisaster(e) {
     e.preventDefault();
 
     const $article = e.target.closest("article");
+    const $form = e.target.closest("form");
 
-    if ($article) {
+    if ($article && $form == null) {
         if ($article.nodeName.toLowerCase() === 'article') {
             showExtraInformationAfterUlDisaster("", "form", "");
             showForm($article.id);
