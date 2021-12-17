@@ -45,7 +45,7 @@ function selectObject(array, selectedElement, selectedCountry=undefined){
     for (const element of array){
         if (element.name === selectedElement){
             if(selectedCountry !== undefined){
-                if(element.country === selectedCountry){
+                if(element.location === selectedCountry){
                     return element
                 }
             }
