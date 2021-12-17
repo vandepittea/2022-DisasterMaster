@@ -17,13 +17,17 @@ function selectSupportableDisaster(e) {
 }
 
 function supportDisaster(e) {
+    e.preventDefault();
+
     const $article = e.target.closest("article");
 
     if ($article) {
         if ($article.nodeName.toLowerCase() === 'article') {
+            if(e.target.nodeName.toLowerCase() === 'input' && e.target.type === "submit") {
                 displayFeedbackDisasterSaved($article);
             }
         }
+    }
 }
 
 // Add additional functions below
