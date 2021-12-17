@@ -108,14 +108,37 @@ function determineIdDisaster(disaster, selector){
 }
 
 function showConfirmationMessage(idDisaster, disasterObject){
-    const $location = document.querySelector(`#${idDisaster} ul`);
-
-    const $success = document.querySelector(`#${idDisaster} .success`);
-    if($success){
-        $success.parentNode.removeChild($success);
-    }
-
     const aidName = disasterObject.requestedAid;
     const aidObject = selectObject(aid, aidName);
-    $location.insertAdjacentHTML('afterend', `<p class="success">${aidObject.confirmationMessage}</p>`);
+    const addCode =`<p class="success">${aidObject.confirmationMessage}</p>`;
+
+    showExtraInformationAfterUlDisaster(idDisaster, ".success", addCode);
+}
+
+function showForm(idDisaster){
+    const form = `<form> 
+                <label for="support-package">donate aid packages</label>
+                <select id="support-package">
+                    <option>Food</option>
+                    <option>Medicine</option>
+                    <option>Diplomats</option>
+                </select>
+                <input type="submit" value="Have my support"/>
+                <label for="currency">donate currency</label>
+                <input type="number" id="currency"/>
+                <input type="submit" value="Take my money!"/>
+            </form>`;
+
+    showExtraInformationAfterUlDisaster(idDisaster, "form", form)
+}
+
+function showExtraInformationAfterUlDisaster(idDisaster, deleteElement, addCode){
+    const $location = document.querySelector(`#${idDisaster} ul`);
+
+    const $delete = document.querySelector(`#${idDisaster} ${deleteElement}`);
+    if($delete){
+        $delete.parentNode.removeChild($delete);
+    }
+
+    $location.insertAdjacentHTML('afterend', addCode);
 }
