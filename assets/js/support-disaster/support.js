@@ -30,10 +30,12 @@ function supportDisaster(e) {
                 const countryName = idToCountry(idDisaster);
                 const valueButton = e.target.value;
 
-                grantOfSupport($article, valueButton, disasterName, countryName);
-                searchDisaster();
-                displayThankYou(`#${idDisaster} ul`, "Thank you for your submission");
-                displayFeedbackDisasterSaved($article, idDisaster, disasterName, countryName);
+                const grantAwarded = grantOfSupport($article, valueButton, disasterName, countryName);
+                if (grantAwarded){
+                    searchDisaster();
+                    displayThankYou(`#${idDisaster} ul`, "Thank you for your submission");
+                    displayFeedbackDisasterSaved($article, idDisaster, disasterName, countryName);
+                }
             }
         }
     }
@@ -171,10 +173,10 @@ function grantOfSupport(article, valueButton, disasterName, countryName){
     const indexArray = submittedDisastersLocalStorage.indexOf(selectedDisaster);
 
     if(valueButton === "Have my support"){
-        grantOfAid(selectedDisaster, submittedDisastersLocalStorage, indexArray);
+        return grantOfAid(selectedDisaster, submittedDisastersLocalStorage, indexArray);
     }
     else{
-        grantOfCurrency(selectedDisaster, submittedDisastersLocalStorage, indexArray);
+        return grantOfCurrency(selectedDisaster, submittedDisastersLocalStorage, indexArray);
     }
 }
 
@@ -195,6 +197,8 @@ function grantOfAid(selectedDisaster, array, indexArray){
     array[indexArray].aidProgress = aidProgress;
 
     saveToLocalStorageOrToMemory(array);
+
+    return true;
 }
 
 function grantOfCurrency(selectedDisaster, array, indexArray){
@@ -208,9 +212,13 @@ function grantOfCurrency(selectedDisaster, array, indexArray){
         array[indexArray].currencyProgress = currencyProgress;
 
         saveToLocalStorageOrToMemory(array);
+
+        return true;
     }
     else{
         alert("ERROR: the currency must be a minimum of 1 and a maximum of 9999.");
+
+        return false;
     }
 }
 
