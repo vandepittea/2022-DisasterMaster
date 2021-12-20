@@ -11,21 +11,6 @@ function suggestCountry(e){
     fillCountriesList(result, "#disaster-location");
 }
 
-function containsCountry(suggest, country){
-    country = country.toLowerCase();
-    const regex = new RegExp(`.*${suggest}.*`);
-    return regex.test(country);
-}
-
-function fillCountriesList(countries, id){
-    const $ul = document.querySelector(`${id} ul`);
-    $ul.innerHTML = "";
-
-    for(const country of countries){
-        $ul.insertAdjacentHTML('beforeend', `<li>${country}</li>`);
-    }
-}
-
 function selectCountry(e){
     if (e.target.nodeName.toLowerCase() === 'li') {
         selectedCountry = e.target.innerHTML;
@@ -79,22 +64,18 @@ function selectAid(e){
 }
 
 // Add additional functions below
-
-function selectArticle(article, selector){
-    const selectedArticles = document.querySelectorAll(`${selector} .selected`);
-    selectedArticles.forEach((selectedArticle) => {
-        selectedArticle.classList.remove('selected');
-    });
-
-    article.classList.add("selected");
+function containsCountry(suggest, country){
+    country = country.toLowerCase();
+    const regex = new RegExp(`.*${suggest}.*`);
+    return regex.test(country);
 }
 
-function selectArticleWhenRerender(article){
-    if(article !== undefined){
-        const idArticle = nameToImageOrID(article)
-        if(document.querySelector(`#${idArticle}`)){
-            document.querySelector(`#${idArticle}`).classList.add("selected");
-        }
+function fillCountriesList(countries, id){
+    const $ul = document.querySelector(`${id} ul`);
+    $ul.innerHTML = "";
+
+    for(const country of countries){
+        $ul.insertAdjacentHTML('beforeend', `<li>${country}</li>`);
     }
 }
 
@@ -118,4 +99,22 @@ function determineAvailableAid(){
     }
 
     return availableAid;
+}
+
+function selectArticle(article, selector){
+    const selectedArticles = document.querySelectorAll(`${selector} .selected`);
+    selectedArticles.forEach((selectedArticle) => {
+        selectedArticle.classList.remove('selected');
+    });
+
+    article.classList.add("selected");
+}
+
+function selectArticleWhenRerender(article){
+    if(article !== undefined){
+        const idArticle = nameToImageOrID(article)
+        if(document.querySelector(`#${idArticle}`)){
+            document.querySelector(`#${idArticle}`).classList.add("selected");
+        }
+    }
 }
