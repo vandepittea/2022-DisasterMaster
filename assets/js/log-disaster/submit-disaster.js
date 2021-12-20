@@ -43,20 +43,12 @@ function submitArrayOrError(condition, submittedArrayLocalStorage, arrayItem, ke
     if(condition === false){
         submittedArrayLocalStorage.push(arrayItem);
         saveToStorage(key, submittedArrayLocalStorage);
+
         document.querySelector("#submit-disaster form").classList.add("hidden");
+
         displayThankYou("#submit-disaster p + p", "Thank you for your submission");
     }
     else{
         console.log("ERROR: double disaster in same country");
     }
-}
-
-function loadExistingArrayFromStorageOrCreateNewArray(key){
-    let submittedArrayLocalStorage = loadFromStorage(key);
-
-    if (submittedArrayLocalStorage == null){
-        submittedArrayLocalStorage = [];
-    }
-
-    return submittedArrayLocalStorage;
 }
