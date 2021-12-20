@@ -48,7 +48,7 @@ function submitGrantForm(e, article){
     const grantAwarded = grantOfSupport(disasterName, countryName, valueButton);
     if (grantAwarded){
         searchDisaster();
-        displayThankYou(`#${idDisaster} ul`, "Thank you for your submission");
+        displayThankYou("Thank you for your submission", `#${idDisaster} ul`);
         displayFeedbackDisasterSaved(article, idDisaster, disasterName, countryName);
     }
 }
@@ -92,11 +92,11 @@ function showSupportableDisasters(result){
 
 function toggleSort(array){
     if (blnAscDesc === 1){
-        sortListAsc("#submitted-disasters div", array);
+        sortListAsc(array,"#submitted-disasters div");
         changeButtonText("#sort", blnAscDesc);
     }
     else{
-        sortListDesc("#submitted-disasters div", array);
+        sortListDesc(array,"#submitted-disasters div");
         changeButtonText("#sort", blnAscDesc);
     }
 }
@@ -110,13 +110,13 @@ function changeButtonText(id, blnAscDesc){
     }
 }
 
-function sortListAsc(id, array){
-    renderDisasters(id, array.sort(compareAscending));
+function sortListAsc(array, id){
+    renderDisasters(array.sort(compareAscending), id);
     checkDisastersForSuccess();
 }
 
-function sortListDesc(id, array){
-    renderDisasters(id, array.sort(compareDescending));
+function sortListDesc(array, id){
+    renderDisasters(array.sort(compareDescending), id);
     checkDisastersForSuccess();
 }
 

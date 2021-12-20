@@ -1,6 +1,6 @@
 "use strict";
 // Determine parameters for this function yourself
-function renderDisasters(selector, disasters) {
+function renderDisasters(disasters, selector) {
     const $location = document.querySelector(selector);
     $location.innerHTML = "";
 
@@ -51,7 +51,7 @@ function renderAid(disaster, selector){
     }
 }
 
-function displayThankYou(selector, message) {
+function displayThankYou(message, selector) {
     const thankYouMessage = `<p class="thankyou">${message}</p>`;
 
     document.querySelector(selector).insertAdjacentHTML('afterend', thankYouMessage);

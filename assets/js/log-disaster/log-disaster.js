@@ -101,7 +101,7 @@ function selectArticleWhenRerender(article){
 function showDisasters(e){
     e.preventDefault();
 
-    renderDisasters(".disasters", disasterTypes);
+    renderDisasters(disasterTypes, ".disasters");
     selectArticleWhenRerender(selectedDisaster);
 }
 
