@@ -210,7 +210,7 @@ function grantOfCurrency(selectedDisaster, array, indexArray){
         saveToLocalStorageOrToMemory(array);
     }
     else{
-        console.log("ERROR: the currency must be a minimum of 1 and a maximum of 9999.");
+        alert("ERROR: the currency must be a minimum of 1 and a maximum of 9999.");
     }
 }
 
