@@ -30,6 +30,9 @@ function navigate(e){
         $target.classList.remove("hidden");
         $source.classList.add("hidden");
     }
+    else{
+        navigationErrors();
+    }
 }
 
 function selectDisaster(e){
@@ -116,5 +119,17 @@ function selectArticleWhenRerender(article){
         if(document.querySelector(`#${idArticle}`)){
             document.querySelector(`#${idArticle}`).classList.add("selected");
         }
+    }
+}
+
+function navigationErrors(){
+    if(selectedCountry === undefined){
+        alert("ERROR: enter the country where the disaster happened.");
+    }
+    else if(selectedDisaster === undefined){
+        alert("ERROR: click on a type of disaster.");
+    }
+    else{
+        alert("ERROR: click on a aid to solve the disaster.");
     }
 }
