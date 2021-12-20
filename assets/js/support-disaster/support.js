@@ -10,11 +10,7 @@ function selectSupportableDisaster(e) {
 
     if ($article && $form == null) {
         if ($article.nodeName.toLowerCase() === 'article') {
-            const $thankYou = document.querySelector(".thankyou");
-            if($thankYou){
-                $thankYou.remove();
-            }
-
+            deleteThankYouMessage();
             showExtraInformationAfterUlDisaster("main", "form", "");
             showForm($article.id);
         }
@@ -226,5 +222,12 @@ function saveToLocalStorageOrToMemory(array){
     }
     else{
         saveToStorage(config.submittedDisastersKey, array);
+    }
+}
+
+function deleteThankYouMessage(){
+    const $thankYou = document.querySelector(".thankyou");
+    if($thankYou){
+        $thankYou.remove();
     }
 }
