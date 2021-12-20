@@ -41,6 +41,7 @@ p {
 a {
     color: var(--accent);
 }
+
 a:hover {
     text-decoration: none;
 }
@@ -53,12 +54,14 @@ form {
     background-color: var(--beige);
     padding: 2rem;
 }
+
 label {
     text-transform: lowercase;
     font-weight: bold;
     display: inline-block;
     margin-bottom: 0.25rem;
 }
+
 input {
     width: 100%;
     height: 3rem;
@@ -73,15 +76,6 @@ input {
 
 #name {
     width: 50%;
-}
-
-#sort-options {
-    font-family: var(--title-font);
-    font-size: 1rem;
-    outline: none;
-    border: 3px solid rgba(166, 3, 3, 0.3);
-    box-sizing: border-box;
-    display: inline-block;
 }
 
 button:hover {
@@ -109,6 +103,15 @@ button:hover {
     margin-left: 0.5em;
 }
 
+#sort-options {
+    font-family: var(--title-font);
+    font-size: 1rem;
+    outline: none;
+    border: 3px solid rgba(166, 3, 3, 0.3);
+    box-sizing: border-box;
+    display: inline-block;
+}
+
 /* --- General classes --- */
 .hidden {
     display: none;
@@ -121,7 +124,6 @@ button:hover {
 }
 
 .lone {
-
     margin: 0 0 0 auto;
 }
 
@@ -149,7 +151,6 @@ main {
     width: 80%;
     margin: 0 auto 3rem auto;
 }
-
 
 header {
     padding-top: 1rem;
@@ -192,12 +193,14 @@ footer {
     padding-top: 0.5rem;
     padding-bottom: 1rem;
 }
+
 footer h3 {
     color: var(--white);
     text-align: center;
     font-size: 0.7rem;
     margin-bottom: 0.5rem;
 }
+
 footer ul {
     display: flex;
     flex-flow: row wrap;
@@ -205,10 +208,12 @@ footer ul {
     width: 90%;
     margin: 0 auto;
 }
+
 footer ul li {
     font-size: 0.7rem;
     margin-right: 1rem;
 }
+
 footer ul li a {
     color: var(--white);
     display: inline-block;
@@ -217,6 +222,7 @@ footer ul li a {
     border-radius: 0.65rem;
     text-decoration: none;
 }
+
 footer ul li a:hover {
     background-color: var(--red);
 }
@@ -244,6 +250,7 @@ article h3 {
     box-shadow: 0.2rem 0.2rem 0.1rem rgba(166, 3, 3, 0.3);
     margin-bottom: 1.5rem;
 }
+
 article figure {
     width: 50%;
     margin: 0 auto;
@@ -277,13 +284,16 @@ article>ul>li:first-child,article>ul>li:last-child  {
     padding: 0.2rem;
     box-sizing: border-box;
 }
+
 article>ul>li:first-child {
     background-color: #f2f2f2;
     border-right: 5px #e9e8e8 solid;
 }
+
 article>ul>li:last-child {
     background-color: #f0eeee;
 }
+
 /*------------------------*/
 /* PAGE SPECIFIC ELEMENTS */
 /*------------------------*/
@@ -292,6 +302,7 @@ article>ul>li:last-child {
 form article.selected {
     background-color:gold;
 }
+
 #submit-disaster form {
 
 }
@@ -299,12 +310,15 @@ form article.selected {
 #submit-disaster form legend {
     text-align: left;
 }
+
 #submit-disaster form ul {
     margin-bottom: 1rem;
 }
+
 #submit-disaster form ul li {
     padding: 0.25rem;
 }
+
 #submit-disaster form ul li:nth-child(even){
     background-color: var(--white);
 }
@@ -334,6 +348,7 @@ form article {
     text-decoration: none;
     margin-bottom: 2rem;
 }
+
 #update-statistics:hover {
     background-color: var(--red);
 }
