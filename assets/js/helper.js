@@ -41,18 +41,33 @@ function idToName(id, deleteLocation){
     return id;
 }
 // Add additional functions below
-function selectObject(array, selectedElement, selectedCountry=undefined){
-    for (const element of array){
-        if (element.name === selectedElement){
-            if(selectedCountry !== undefined){
-                if(element.location === selectedCountry){
-                    return element
-                }
-            }
-            else{
-                return element;
-            }
-        }
+function loadExistingArrayFromStorageOrCreateNewArray(key){
+    let submittedArrayLocalStorage = loadFromStorage(key);
+
+    if (submittedArrayLocalStorage == null){
+        submittedArrayLocalStorage = [];
+    }
+
+    return submittedArrayLocalStorage;
+}
+
+function loadFromMemoryOrLocalStorage(key){
+    let submittedDisastersLocalStorage = loadFromStorage(key);
+
+    if (submittedDisastersLocalStorage == null){
+        submittedDisastersLocalStorage = submittedDisasters;
+    }
+
+    return submittedDisastersLocalStorage;
+}
+
+function saveToLocalStorageOrToMemory(array){
+    const checkLocalStorageArrayExists = loadFromStorage(config.submittedDisastersKey);
+    if(checkLocalStorageArrayExists == null){
+        submittedDisasters = array;
+    }
+    else{
+        saveToStorage(config.submittedDisastersKey, array);
     }
 }
 
@@ -85,32 +100,17 @@ function idToCountry(id){
     return id;
 }
 
-function loadFromMemoryOrLocalStorage(key){
-    let submittedDisastersLocalStorage = loadFromStorage(key);
-
-    if (submittedDisastersLocalStorage == null){
-        submittedDisastersLocalStorage = submittedDisasters;
+function selectObject(array, selectedElement, selectedCountry=undefined){
+    for (const element of array){
+        if (element.name === selectedElement){
+            if(selectedCountry !== undefined){
+                if(element.location === selectedCountry){
+                    return element
+                }
+            }
+            else{
+                return element;
+            }
+        }
     }
-
-    return submittedDisastersLocalStorage;
-}
-
-function saveToLocalStorageOrToMemory(array){
-    const checkLocalStorageArrayExists = loadFromStorage(config.submittedDisastersKey);
-    if(checkLocalStorageArrayExists == null){
-        submittedDisasters = array;
-    }
-    else{
-        saveToStorage(config.submittedDisastersKey, array);
-    }
-}
-
-function loadExistingArrayFromStorageOrCreateNewArray(key){
-    let submittedArrayLocalStorage = loadFromStorage(key);
-
-    if (submittedArrayLocalStorage == null){
-        submittedArrayLocalStorage = [];
-    }
-
-    return submittedArrayLocalStorage;
 }
