@@ -229,13 +229,7 @@ function grantOfCurrency(selectedDisaster, array, indexArray){
     const currency = document.querySelector("#currency").value;
 
     if(currency >= 1 && currency <= 9999){
-        let currencyProgress = selectedDisaster.currencyProgress;
-
-        currencyProgress += parseInt(currency);
-
-        array[indexArray].currencyProgress = currencyProgress;
-
-        saveToLocalStorageOrToMemory(array);
+        grantOfCurrencyMeetsConditions(selectedDisaster, array, indexArray, currency);
 
         return true;
     }
@@ -244,4 +238,13 @@ function grantOfCurrency(selectedDisaster, array, indexArray){
 
         return false;
     }
+}
+
+function grantOfCurrencyMeetsConditions(selectedDisaster, array, indexArray, currency){
+    let currencyProgress = selectedDisaster.currencyProgress;
+
+    currencyProgress += parseInt(currency);
+    array[indexArray].currencyProgress = currencyProgress;
+
+    saveToLocalStorageOrToMemory(array);
 }
