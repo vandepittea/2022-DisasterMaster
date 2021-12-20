@@ -218,7 +218,6 @@ function saveToLocalStorageOrToMemory(array){
     const checkLocalStorageArrayExists = loadFromStorage(config.submittedDisastersKey);
     if(checkLocalStorageArrayExists == null){
         submittedDisasters = array;
-        console.log(submittedDisasters);
     }
     else{
         saveToStorage(config.submittedDisastersKey, array);
