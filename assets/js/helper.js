@@ -104,3 +104,13 @@ function saveToLocalStorageOrToMemory(array){
         saveToStorage(config.submittedDisastersKey, array);
     }
 }
+
+function loadExistingArrayFromStorageOrCreateNewArray(key){
+    let submittedArrayLocalStorage = loadFromStorage(key);
+
+    if (submittedArrayLocalStorage == null){
+        submittedArrayLocalStorage = [];
+    }
+
+    return submittedArrayLocalStorage;
+}
