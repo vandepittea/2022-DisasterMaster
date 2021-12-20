@@ -25,17 +25,7 @@ function supportDisaster(e) {
     if ($article) {
         if ($article.nodeName.toLowerCase() === 'article') {
             if(e.target.nodeName.toLowerCase() === 'input' && e.target.type === "submit") {
-                const idDisaster = $article.id;
-                const disasterName = idToName(idDisaster, true);
-                const countryName = idToCountry(idDisaster);
-                const valueButton = e.target.value;
-
-                const grantAwarded = grantOfSupport(disasterName, countryName, valueButton);
-                if (grantAwarded){
-                    searchDisaster();
-                    displayThankYou(`#${idDisaster} ul`, "Thank you for your submission");
-                    displayFeedbackDisasterSaved($article, idDisaster, disasterName, countryName);
-                }
+                submitGrantForm(e, $article);
             }
         }
     }
@@ -66,6 +56,20 @@ function deleteThankYouMessage(){
     const $thankYou = document.querySelector(".thankyou");
     if($thankYou){
         $thankYou.remove();
+    }
+}
+
+function submitGrantForm(e, article){
+    const idDisaster = article.id;
+    const disasterName = idToName(idDisaster, true);
+    const countryName = idToCountry(idDisaster);
+    const valueButton = e.target.value;
+
+    const grantAwarded = grantOfSupport(disasterName, countryName, valueButton);
+    if (grantAwarded){
+        searchDisaster();
+        displayThankYou(`#${idDisaster} ul`, "Thank you for your submission");
+        displayFeedbackDisasterSaved(article, idDisaster, disasterName, countryName);
     }
 }
 
