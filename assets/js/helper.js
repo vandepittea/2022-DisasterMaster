@@ -37,6 +37,7 @@ function idToName(id, deleteLocation){
 
     return id;
 }
+
 // Add additional functions below
 function loadExistingArrayFromStorageOrCreateNewArray(key){
     let submittedArrayLocalStorage = loadFromStorage(key);

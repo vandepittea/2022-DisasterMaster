@@ -1,4 +1,5 @@
 "use strict";
+
 // Determine parameters for this function yourself
 function renderDisasters(disasters, selector) {
     const $location = document.querySelector(selector);
