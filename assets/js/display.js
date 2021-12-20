@@ -81,6 +81,15 @@ function displayFeedbackDisasterSaved(article, idDisaster, disasterName, country
 }
 
 // Add additional functions below
+function determineIdDisaster(disaster, selector){
+    if(selector === "#submitted-disasters div"){
+        return nameToImageOrID(`${disaster.name} ${disaster.location}`);
+    }
+    else{
+        return nameToImageOrID(disaster.name);
+    }
+}
+
 function renderExtraInfo(disaster, selector){
     const basicAid =  `<dt>Category:</dt>
             <dd>${disaster.category}</dd>
@@ -99,23 +108,6 @@ function renderExtraInfo(disaster, selector){
     }
 }
 
-function determineIdDisaster(disaster, selector){
-    if(selector === "#submitted-disasters div"){
-        return nameToImageOrID(`${disaster.name} ${disaster.location}`);
-    }
-    else{
-        return nameToImageOrID(disaster.name);
-    }
-}
-
-function showConfirmationMessage(idDisaster, disasterObject){
-    const aidName = disasterObject.requestedAid;
-    const aidObject = selectObject(aid, aidName);
-    const addCode =`<p class="success">${aidObject.confirmationMessage}</p>`;
-
-    showExtraInformationAfterUlDisaster(`#${idDisaster}`, ".success", addCode);
-}
-
 function showForm(idDisaster){
     const form = `<form> 
                 <label for="support-package">donate aid packages</label>
@@ -131,6 +123,14 @@ function showForm(idDisaster){
             </form>`;
 
     showExtraInformationAfterUlDisaster(`#${idDisaster}`, "form", form)
+}
+
+function showConfirmationMessage(idDisaster, disasterObject){
+    const aidName = disasterObject.requestedAid;
+    const aidObject = selectObject(aid, aidName);
+    const addCode =`<p class="success">${aidObject.confirmationMessage}</p>`;
+
+    showExtraInformationAfterUlDisaster(`#${idDisaster}`, ".success", addCode);
 }
 
 function showExtraInformationAfterUlDisaster(idDisaster, deleteElement, addCode){
