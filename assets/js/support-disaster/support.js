@@ -205,21 +205,24 @@ function grantOfAid(selectedDisaster, array, indexArray){
     const aidPackage = document.querySelector("#support-package").value;
     let aidProgress = selectedDisaster.aidProgress;
 
-    if(aidPackage === "food"){
-        aidProgress += 10;
-    }
-    else if(aidPackage === "medicine"){
-        aidProgress += 50;
-    }
-    else{
-        aidProgress += 100;
-    }
-
+    aidProgress += determineAidProgress(aidPackage);
     array[indexArray].aidProgress = aidProgress;
 
     saveToLocalStorageOrToMemory(array);
 
     return true;
+}
+
+function determineAidProgress(aidPackage){
+    if(aidPackage === "food"){
+        return 10;
+    }
+    else if(aidPackage === "medicine"){
+        return 50;
+    }
+    else{
+        return 100;
+    }
 }
 
 function grantOfCurrency(selectedDisaster, array, indexArray){
