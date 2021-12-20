@@ -9,7 +9,7 @@ function submitDisaster(e){
 
         const submittedDisastersLocalStorage = loadExistingArrayFromStorageOrCreateNewArray(config.submittedDisastersKey);
 
-        let doubleDisasterInSameCountry = doubleDisasterInSameCountryCheck(submittedDisastersLocalStorage, disaster);
+        let doubleDisasterInSameCountry = doubleDisasterInSameCountryCheck(disaster, submittedDisastersLocalStorage);
 
         submitArrayOrError(doubleDisasterInSameCountry, submittedDisastersLocalStorage, disaster, config.submittedDisastersKey);
     }
@@ -30,7 +30,7 @@ function saveDisaster(disaster, countryName, aidName, aidGoal, currencyGoal){
 }
 
 // Add additional functions below
-function doubleDisasterInSameCountryCheck(submittedDisastersLocalStorage, disaster){
+function doubleDisasterInSameCountryCheck(disaster, submittedDisastersLocalStorage){
     for(const submittedDisaster of submittedDisastersLocalStorage){
         if(submittedDisaster.name === disaster.name && submittedDisaster.location === disaster.location){
             return true;
