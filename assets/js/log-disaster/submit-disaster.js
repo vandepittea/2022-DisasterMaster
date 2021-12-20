@@ -49,6 +49,6 @@ function submitArrayOrError(condition, submittedArrayLocalStorage, arrayItem, ke
         displayThankYou("#submit-disaster p + p", "Thank you for your submission");
     }
     else{
-        console.log("ERROR: double disaster in same country");
+        alert("ERROR: double disaster in same country");
     }
 }
