@@ -78,11 +78,15 @@ input {
     width: 50%;
 }
 
+#submitted-disasters input{
+    line-height: 100%;
+}
+
 button:hover {
     cursor: pointer;
 }
 
-.next, .previous, button[type="submit"],#update-statistics,#sort {
+.next, .previous, button[type="submit"],#update-statistics, aside button {
     background-color: var(--accent);
     color: var(--white);
     text-transform: lowercase;
@@ -98,12 +102,12 @@ button:hover {
     width: max-content;
 }
 
-#sort {
+aside button {
     display: inline-block;
     margin-left: 0.5em;
 }
 
-#sort-options {
+aside select {
     font-family: var(--title-font);
     font-size: 1rem;
     outline: none;
