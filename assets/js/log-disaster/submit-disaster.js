@@ -46,7 +46,7 @@ function submitArrayOrError(condition, submittedArrayLocalStorage, arrayItem, ke
 
         document.querySelector("#submit-disaster form").classList.add("hidden");
 
-        displayThankYou("#submit-disaster p + p", "Thank you for your submission");
+        displayThankYou("Thank you for your submission", "#submit-disaster p + p");
     }
     else{
         alert("ERROR: double disaster in same country");
