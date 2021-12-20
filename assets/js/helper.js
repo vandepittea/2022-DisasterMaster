@@ -32,10 +32,7 @@ function idToName(id, deleteLocation){
     id = id.charAt(0).toUpperCase() + id.slice(1);
 
     if(deleteLocation === true){
-        const indexLastSpace = id.lastIndexOf(" ");
-        id = id.substring(0, indexLastSpace);
-
-        id = doubleCheckDisasterName(id);
+        id = deleteLocationOfId(id);
     }
 
     return id;
@@ -69,6 +66,13 @@ function saveToLocalStorageOrToMemory(array){
     else{
         saveToStorage(config.submittedDisastersKey, array);
     }
+}
+
+function deleteLocationOfId(id){
+    const indexLastSpace = id.lastIndexOf(" ");
+    id = id.substring(0, indexLastSpace);
+
+    return doubleCheckDisasterName(id);
 }
 
 function doubleCheckDisasterName(disasterName){
