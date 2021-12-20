@@ -52,13 +52,20 @@ function loadFromMemoryOrLocalStorage(key){
     return submittedDisastersLocalStorage;
 }
 
-function showSupportableDisasters(result){
-    if(result === undefined){
-        const submittedDisastersLocalStorage = loadFromMemoryOrLocalStorage(config.submittedDisastersKey);
-        toggleSort(submittedDisastersLocalStorage);
+function saveToLocalStorageOrToMemory(array){
+    const checkLocalStorageArrayExists = loadFromStorage(config.submittedDisastersKey);
+    if(checkLocalStorageArrayExists == null){
+        submittedDisasters = array;
     }
     else{
-        toggleSort(result);
+        saveToStorage(config.submittedDisastersKey, array);
+    }
+}
+
+function deleteThankYouMessage(){
+    const $thankYou = document.querySelector(".thankyou");
+    if($thankYou){
+        $thankYou.remove();
     }
 }
 
@@ -75,6 +82,30 @@ function clickSort(e){
     searchDisaster();
 }
 
+function searchDisaster(){
+    const submittedDisastersLocalStorage = loadFromMemoryOrLocalStorage(config.submittedDisastersKey);
+    const result = submittedDisastersLocalStorage.filter(containsDisaster);
+
+    showSupportableDisasters(result);
+}
+
+function containsDisaster(disaster){
+    disaster = disaster.name.toLowerCase();
+    const search = document.querySelector("#name").value.toLowerCase();
+    const regex = new RegExp(`.*${search}.*`);
+    return regex.test(disaster);
+}
+
+function showSupportableDisasters(result){
+    if(result === undefined){
+        const submittedDisastersLocalStorage = loadFromMemoryOrLocalStorage(config.submittedDisastersKey);
+        toggleSort(submittedDisastersLocalStorage);
+    }
+    else{
+        toggleSort(result);
+    }
+}
+
 function toggleSort(array){
     if (blnAscDesc === 1){
         sortListAsc("#submitted-disasters div", array);
@@ -86,6 +117,15 @@ function toggleSort(array){
     }
 }
 
+function changeButtonText(id, blnAscDesc){
+    if (blnAscDesc === 1){
+        document.querySelector(`button${id}`).innerHTML = "descending";
+    }
+    else{
+        document.querySelector(`button${id}`).innerHTML = "ascending";
+    }
+}
+
 function sortListAsc(id, array){
     renderDisasters(id, array.sort(compareAscending));
     checkDisastersForSuccess();
@@ -94,6 +134,16 @@ function sortListAsc(id, array){
 function sortListDesc(id, array){
     renderDisasters(id, array.sort(compareDescending));
     checkDisastersForSuccess();
+}
+
+function checkDisastersForSuccess(){
+    const disasters = document.querySelectorAll("article");
+    disasters.forEach((disaster) => {
+        const idDisaster = disaster.id;
+        const disasterName = idToName(idDisaster, true);
+        const countryName = idToCountry(idDisaster);
+        displayFeedbackDisasterSaved(disaster, idDisaster, disasterName, countryName);
+    });
 }
 
 function compareDescending(a, b){
@@ -132,39 +182,6 @@ function compareAscending(a, b){
     else{
         return 1;
     }
-}
-
-function changeButtonText(id, blnAscDesc){
-    if (blnAscDesc === 1){
-        document.querySelector(`button${id}`).innerHTML = "descending";
-    }
-    else{
-        document.querySelector(`button${id}`).innerHTML = "ascending";
-    }
-}
-
-function searchDisaster(){
-    const submittedDisastersLocalStorage = loadFromMemoryOrLocalStorage(config.submittedDisastersKey);
-    const result = submittedDisastersLocalStorage.filter(containsDisaster);
-
-    showSupportableDisasters(result);
-}
-
-function containsDisaster(disaster){
-    disaster = disaster.name.toLowerCase();
-    const search = document.querySelector("#name").value.toLowerCase();
-    const regex = new RegExp(`.*${search}.*`);
-    return regex.test(disaster);
-}
-
-function checkDisastersForSuccess(){
-    const disasters = document.querySelectorAll("article");
-    disasters.forEach((disaster) => {
-        const idDisaster = disaster.id;
-        const disasterName = idToName(idDisaster, true);
-        const countryName = idToCountry(idDisaster);
-        displayFeedbackDisasterSaved(disaster, idDisaster, disasterName, countryName);
-    });
 }
 
 function grantOfSupport(article, valueButton, disasterName, countryName){
@@ -219,22 +236,5 @@ function grantOfCurrency(selectedDisaster, array, indexArray){
         alert("ERROR: the currency must be a minimum of 1 and a maximum of 9999.");
 
         return false;
-    }
-}
-
-function saveToLocalStorageOrToMemory(array){
-    const checkLocalStorageArrayExists = loadFromStorage(config.submittedDisastersKey);
-    if(checkLocalStorageArrayExists == null){
-        submittedDisasters = array;
-    }
-    else{
-        saveToStorage(config.submittedDisastersKey, array);
-    }
-}
-
-function deleteThankYouMessage(){
-    const $thankYou = document.querySelector(".thankyou");
-    if($thankYou){
-        $thankYou.remove();
     }
 }
