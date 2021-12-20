@@ -32,26 +32,6 @@ function supportDisaster(e) {
 }
 
 // Add additional functions below
-function loadFromMemoryOrLocalStorage(key){
-    let submittedDisastersLocalStorage = loadFromStorage(key);
-
-    if (submittedDisastersLocalStorage == null){
-        submittedDisastersLocalStorage = submittedDisasters;
-    }
-
-    return submittedDisastersLocalStorage;
-}
-
-function saveToLocalStorageOrToMemory(array){
-    const checkLocalStorageArrayExists = loadFromStorage(config.submittedDisastersKey);
-    if(checkLocalStorageArrayExists == null){
-        submittedDisasters = array;
-    }
-    else{
-        saveToStorage(config.submittedDisastersKey, array);
-    }
-}
-
 function deleteThankYouMessage(){
     const $thankYou = document.querySelector(".thankyou");
     if($thankYou){
