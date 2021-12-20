@@ -30,7 +30,7 @@ function supportDisaster(e) {
                 const countryName = idToCountry(idDisaster);
                 const valueButton = e.target.value;
 
-                const grantAwarded = grantOfSupport($article, valueButton, disasterName, countryName);
+                const grantAwarded = grantOfSupport(disasterName, countryName, valueButton);
                 if (grantAwarded){
                     searchDisaster();
                     displayThankYou(`#${idDisaster} ul`, "Thank you for your submission");
@@ -184,7 +184,7 @@ function compareAscending(a, b){
     }
 }
 
-function grantOfSupport(article, valueButton, disasterName, countryName){
+function grantOfSupport(disasterName, countryName, valueButton){
     const submittedDisastersLocalStorage = loadFromMemoryOrLocalStorage(config.submittedDisastersKey);
     const selectedDisaster = selectObject(submittedDisastersLocalStorage, disasterName, countryName);
     const indexArray = submittedDisastersLocalStorage.indexOf(selectedDisaster);
