@@ -1,6 +1,7 @@
 "use strict";
 
 let blnAscDesc = 1;
+const idsAlreadySubmittedForm = [];
 
 function selectSupportableDisaster(e) {
     e.preventDefault();
@@ -110,11 +111,13 @@ function changeButtonText(selector, blnAscDesc){
 function sortListAsc(array, id){
     renderDisasters(array.sort(compareAscending), id);
     checkDisastersForSuccess();
+    checkDisastersForSubmission();
 }
 
 function sortListDesc(array, id){
     renderDisasters(array.sort(compareDescending), id);
     checkDisastersForSuccess();
+    checkDisastersForSubmission();
 }
 
 function checkDisastersForSuccess(){
@@ -125,6 +128,17 @@ function checkDisastersForSuccess(){
         const countryName = idToCountry(idDisaster);
         displayFeedbackDisasterSaved(disaster, idDisaster, disasterName, countryName);
     });
+}
+
+function checkDisastersForSubmission(){
+    const forms = document.querySelectorAll("article");
+
+    forms.forEach((form) => {
+        const idDisaster = form.id;
+        if(idsAlreadySubmittedForm.includes(idDisaster)){
+            displayThankYou("Thank you for your submission", `#${idDisaster} ul`);
+        }
+    })
 }
 
 function compareDescending(a, b){
@@ -169,6 +183,8 @@ function grantOfSupport(idDisaster, disasterName, countryName, valueButton){
     const submittedDisastersLocalStorage = loadFromMemoryOrLocalStorage(config.submittedDisastersKey);
     const selectedDisaster = selectObject(submittedDisastersLocalStorage, disasterName, countryName);
     const indexArray = submittedDisastersLocalStorage.indexOf(selectedDisaster);
+
+    idsAlreadySubmittedForm.push(idDisaster);
 
     if(valueButton === "Have my support"){
         return grantOfAid(idDisaster, selectedDisaster, submittedDisastersLocalStorage, indexArray);
