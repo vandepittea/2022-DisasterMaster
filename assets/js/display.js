@@ -129,9 +129,9 @@ function showForm(idDisaster){
 function showConfirmationMessage(idDisaster, disasterObject){
     const aidName = disasterObject.requestedAid;
     const aidObject = selectObject(aid, aidName);
-    const addCode =`<p class="success">${aidObject.confirmationMessage}</p>`;
+    const confirmationMessage =`<p class="success">${aidObject.confirmationMessage}</p>`;
 
-    showExtraInformationAfterUlDisaster(`#${idDisaster}`, ".success", addCode);
+    showExtraInformationAfterUlDisaster(`#${idDisaster}`, ".success", confirmationMessage);
 }
 
 function showExtraInformationAfterUlDisaster(idDisaster, deleteElement, addCode){
