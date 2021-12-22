@@ -3,7 +3,7 @@
 function submitDisaster(e){
     e.preventDefault();
 
-    if(selectedAid !== undefined){ // global variable
+    if(selectedAid !== undefined){
         const disasterObject = selectObject(disasterTypes, selectedDisaster);
         const disaster = saveDisaster(disasterObject, selectedCountry, selectedAid, determineAid(determineAvailableAid(), aid), determineCurrency(disasterObject, selectedCountry));
 
