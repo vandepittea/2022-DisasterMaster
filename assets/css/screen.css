@@ -107,7 +107,7 @@ aside button {
     margin-left: 0.5em;
 }
 
-aside select {
+#sort-order {
     font-family: var(--title-font);
     font-size: 1rem;
     outline: none;
