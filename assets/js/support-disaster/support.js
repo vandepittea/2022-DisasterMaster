@@ -93,20 +93,20 @@ function showSupportableDisasters(result){
 function toggleSort(array){
     if (blnAscDesc === 1){
         sortListAsc(array,"#submitted-disasters div");
-        changeButtonText("#sort", blnAscDesc);
+        changeButtonText("aside button", blnAscDesc);
     }
     else{
         sortListDesc(array,"#submitted-disasters div");
-        changeButtonText("#sort", blnAscDesc);
+        changeButtonText("aside button", blnAscDesc);
     }
 }
 
-function changeButtonText(id, blnAscDesc){
+function changeButtonText(selector, blnAscDesc){
     if (blnAscDesc === 1){
-        document.querySelector(`button${id}`).innerHTML = "descending";
+        document.querySelector(selector).innerHTML = "descending";
     }
     else{
-        document.querySelector(`button${id}`).innerHTML = "ascending";
+        document.querySelector(selector).innerHTML = "ascending";
     }
 }
 
