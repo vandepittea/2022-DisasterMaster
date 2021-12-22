@@ -34,14 +34,14 @@ function renderAid(disaster, selector){
                     <li>
                         <h4>Aid:</h4>
                         <ul>
-                            <li>progress: <span>${disaster.aidProgress}</span></li>
+                            <li class="aid-progress">progress: <span>${disaster.aidProgress}</span></li>
                             <li>goal: <span>${disaster.aidGoal}</span></li>
                         </ul>
                     </li>
                     <li>
                         <h4>Currency</h4>
                         <ul>
-                            <li>progress: <span>${disaster.currencyProgress}</span></li>
+                            <li class="currency-progress">progress: <span>${disaster.currencyProgress}</span></li>
                             <li>goal: <span>${disaster.currencyGoal}</span></li>
                         </ul>
                     </li>

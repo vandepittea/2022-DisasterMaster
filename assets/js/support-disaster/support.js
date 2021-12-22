@@ -35,7 +35,7 @@ function submitGrantForm(e, article){
     const countryName = idToCountry(idDisaster);
     const valueButton = e.target.value;
 
-    const grantAwarded = grantOfSupport(disasterName, countryName, valueButton);
+    const grantAwarded = grantOfSupport(idDisaster, disasterName, countryName, valueButton);
     if (grantAwarded){
         deleteForm(idDisaster);
         displayFeedbackDisasterSaved(article, idDisaster, disasterName, countryName);
@@ -167,20 +167,20 @@ function compareAscending(a, b){
     }
 }
 
-function grantOfSupport(disasterName, countryName, valueButton){
+function grantOfSupport(idDisaster, disasterName, countryName, valueButton){
     const submittedDisastersLocalStorage = loadFromMemoryOrLocalStorage(config.submittedDisastersKey);
     const selectedDisaster = selectObject(submittedDisastersLocalStorage, disasterName, countryName);
     const indexArray = submittedDisastersLocalStorage.indexOf(selectedDisaster);
 
     if(valueButton === "Have my support"){
-        return grantOfAid(selectedDisaster, submittedDisastersLocalStorage, indexArray);
+        return grantOfAid(idDisaster, selectedDisaster, submittedDisastersLocalStorage, indexArray);
     }
     else{
-        return grantOfCurrency(selectedDisaster, submittedDisastersLocalStorage, indexArray);
+        return grantOfCurrency(idDisaster, selectedDisaster, submittedDisastersLocalStorage, indexArray);
     }
 }
 
-function grantOfAid(selectedDisaster, array, indexArray){
+function grantOfAid(idDisaster, selectedDisaster, array, indexArray){
     const aidPackage = document.querySelector("#support-package").value;
     let aidProgress = selectedDisaster.aidProgress;
 
@@ -188,6 +188,8 @@ function grantOfAid(selectedDisaster, array, indexArray){
     array[indexArray].aidProgress = aidProgress;
 
     saveToLocalStorageOrToMemory(array);
+
+    document.querySelector(`#${idDisaster} .aid-progress`).innerHTML = `progress: ${aidProgress}`;
 
     return true;
 }
@@ -204,11 +206,11 @@ function determineAidProgress(aidPackage){
     }
 }
 
-function grantOfCurrency(selectedDisaster, array, indexArray){
+function grantOfCurrency(idDisaster, selectedDisaster, array, indexArray){
     const currency = document.querySelector("#currency").value;
 
     if(currency >= 1 && currency <= 9999){
-        grantOfCurrencyMeetsConditions(selectedDisaster, array, indexArray, currency);
+        grantOfCurrencyMeetsConditions(idDisaster, selectedDisaster, array, indexArray, currency);
 
         return true;
     }
@@ -219,11 +221,13 @@ function grantOfCurrency(selectedDisaster, array, indexArray){
     }
 }
 
-function grantOfCurrencyMeetsConditions(selectedDisaster, array, indexArray, currency){
+function grantOfCurrencyMeetsConditions(idDisaster, selectedDisaster, array, indexArray, currency){
     let currencyProgress = selectedDisaster.currencyProgress;
 
     currencyProgress += parseInt(currency);
     array[indexArray].currencyProgress = currencyProgress;
 
     saveToLocalStorageOrToMemory(array);
+
+    document.querySelector(`#${idDisaster} .currency-progress`).innerHTML = `progress: ${currencyProgress}`;
 }
