@@ -90,10 +90,8 @@ function determineAvailableAid(){
     const disaster = selectObject(disasterTypes, selectedDisaster);
 
     for (const assistance of aid) {
-        for (const disasterType of assistance.disasterTypes) {
-            if (disasterType === disaster.category && assistance.minimalLevel <= disaster.level) {
-                availableAid.push(assistance);
-            }
+        if (assistance.disasterTypes.includes(disaster.category) && assistance.minimalLevel <= disaster.level) {
+            availableAid.push(assistance);
         }
     }
 
