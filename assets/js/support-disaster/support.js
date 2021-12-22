@@ -205,7 +205,7 @@ function determineAidProgress(aidPackage){
 }
 
 function grantOfCurrency(idDisaster, selectedDisaster, array, indexArray){
-    const currency = document.querySelector("#currency").value;
+    const currency = document.querySelector(`#${idDisaster} #currency`).value;
 
     if(currency >= 1 && currency <= 9999){
         grantOfCurrencyMeetsConditions(idDisaster, selectedDisaster, array, indexArray, currency);
