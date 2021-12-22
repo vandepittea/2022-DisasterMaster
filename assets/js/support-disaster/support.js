@@ -39,9 +39,7 @@ function submitGrantForm(e, article){
     if (grantAwarded){
         deleteForm(idDisaster);
         displayFeedbackDisasterSaved(article, idDisaster, disasterName, countryName);
-        if(!(document.querySelector(`#${idDisaster} .success`))) {
-            displayThankYou("Thank you for your submission", `#${idDisaster} ul`);
-        }
+        displayThankYou("Thank you for your submission", `#${idDisaster} ul`);
     }
 }
 
