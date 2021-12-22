@@ -39,9 +39,9 @@ function doubleDisasterInSameCountryCheck(disaster, submittedDisastersLocalStora
     return false;
 }
 
-function submitArrayOrError(condition, submittedArrayLocalStorage, arrayItem, key){
+function submitArrayOrError(condition, submittedArrayLocalStorage, submittedArrayItem, key){
     if(condition === false){
-        submittedArrayLocalStorage.push(arrayItem);
+        submittedArrayLocalStorage.push(submittedArrayItem);
         saveToStorage(key, submittedArrayLocalStorage);
 
         document.querySelector("#submit-disaster form").classList.add("hidden");

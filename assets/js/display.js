@@ -71,12 +71,12 @@ function renderAvailableAid(aid, selector) {
     }
 }
 
-function displayFeedbackDisasterSaved(article, idDisaster, disasterName, countryName){
+function displayFeedbackDisasterSaved(disaster, idDisaster, disasterName, countryName){
     const submittedDisastersLocalStorage = loadFromMemoryOrLocalStorage(config.submittedDisastersKey);
     const selectedDisaster = selectObject(submittedDisastersLocalStorage, disasterName, countryName);
 
     if(selectedDisaster.aidProgress >= selectedDisaster.aidGoal || selectedDisaster.currencyProgress >= selectedDisaster.currencyGoal) {
-        article.classList.add("success");
+        disaster.classList.add("success");
         showConfirmationMessage(idDisaster, selectedDisaster);
     }
 }
