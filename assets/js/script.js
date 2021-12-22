@@ -29,7 +29,7 @@ function initSubmitDisaster(){
 function initSupportDisasters() {
     showSupportableDisasters();
 
-    document.querySelector("#sort").addEventListener('click', clickSort);
+    document.querySelector("aside button").addEventListener('click', clickSort);
     document.querySelector("#name").addEventListener('input', searchDisaster);
     document.querySelector("select").addEventListener('change', searchDisaster);
     document.querySelector("#submitted-disasters div").addEventListener('click', selectSupportableDisaster);
