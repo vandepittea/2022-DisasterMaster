@@ -22,10 +22,8 @@ function supportDisaster(e) {
     const $article = e.target.closest("article");
 
     if ($article) {
-        if ($article.nodeName.toLowerCase() === 'article') {
-            if(e.target.nodeName.toLowerCase() === 'input' && e.target.type === "submit") {
-                submitGrantForm(e, $article);
-            }
+        if(e.target.nodeName.toLowerCase() === 'input' && e.target.type === "submit") {
+            submitGrantForm(e, $article);
         }
     }
 }
