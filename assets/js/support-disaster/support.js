@@ -39,11 +39,8 @@ function submitGrantForm(e, article){
 
     const grantAwarded = grantOfSupport(disasterName, countryName, valueButton);
     if (grantAwarded){
-        searchDisaster();
         displayFeedbackDisasterSaved(article, idDisaster, disasterName, countryName);
-        if(!(document.querySelector(`#${idDisaster} .success`))){
-            displayThankYou("Thank you for your submission", `#${idDisaster} ul`);
-        }
+        displayThankYou("Thank you for your submission", `#${idDisaster} ul`);
     }
 }
 
