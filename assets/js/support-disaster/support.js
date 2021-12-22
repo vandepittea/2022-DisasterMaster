@@ -39,8 +39,18 @@ function submitGrantForm(e, article){
 
     const grantAwarded = grantOfSupport(disasterName, countryName, valueButton);
     if (grantAwarded){
+        deleteForm(idDisaster);
         displayFeedbackDisasterSaved(article, idDisaster, disasterName, countryName);
-        displayThankYou("Thank you for your submission", `#${idDisaster} ul`);
+        if(!(document.querySelector(`#${idDisaster} .success`))) {
+            displayThankYou("Thank you for your submission", `#${idDisaster} ul`);
+        }
+    }
+}
+
+function deleteForm(idDisaster){
+    const $form = document.querySelector(`#${idDisaster} form`);
+    if($form){
+        $form.remove();
     }
 }
 

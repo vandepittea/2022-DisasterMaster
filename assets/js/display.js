@@ -53,11 +53,9 @@ function renderAid(disaster, selector){
 }
 
 function displayThankYou(message, selector) {
-    if(!(document.querySelector(`#${selector} .success`))) {
         const thankYouMessage = `<p class="thankyou">${message}</p>`;
 
         document.querySelector(selector).insertAdjacentHTML('afterend', thankYouMessage);
-    }
 }
 
 function renderAvailableAid(aid, selector) {
