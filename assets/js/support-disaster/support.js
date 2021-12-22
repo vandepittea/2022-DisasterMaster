@@ -7,11 +7,10 @@ function selectSupportableDisaster(e) {
 
     const $article = e.target.closest("article");
     const $form = e.target.closest("form");
+    const idDisaster = $article.id;
 
     if ($article && $form == null) {
-        if ($article.nodeName.toLowerCase() === 'article') {
-            deleteThankYouMessage();
-            showExtraInformationAfterUlDisaster("main", "form", "");
+        if(!(document.querySelector(`#${idDisaster} .thankyou`) || document.querySelector(`#${idDisaster} .success`))){
             showForm($article.id);
         }
     }
@@ -32,13 +31,6 @@ function supportDisaster(e) {
 }
 
 // Add additional functions below
-function deleteThankYouMessage(){
-    const $thankYou = document.querySelector(".thankyou");
-    if($thankYou){
-        $thankYou.remove();
-    }
-}
-
 function submitGrantForm(e, article){
     const idDisaster = article.id;
     const disasterName = idToName(idDisaster, true);
