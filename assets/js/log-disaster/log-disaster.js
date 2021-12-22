@@ -39,10 +39,8 @@ function selectDisaster(e){
     const $article = e.target.closest("article");
 
     if ($article) {
-        if ($article.nodeName.toLowerCase() === 'article') {
-            selectArticle($article, ".disasters");
-            selectedDisaster = idToName($article.id, false);
-        }
+        selectArticle($article, ".disasters");
+        selectedDisaster = idToName($article.id, false);
     }
 }
 
@@ -59,10 +57,8 @@ function selectAid(e){
     const $article = e.target.closest("article");
 
     if ($article) {
-        if ($article.nodeName.toLowerCase() === 'article') {
-            selectArticle($article, ".aids");
-            selectedAid = idToName($article.id, false);
-        }
+        selectArticle($article, ".aids");
+        selectedAid = idToName($article.id, false);
     }
 }
 
