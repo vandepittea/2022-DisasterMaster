@@ -24,10 +24,12 @@ function loadFromStorage(key) {
 
 function nameToImageOrID(name){
     name = name.replaceAll(" ", "-");
+    name = name.replaceAll("/", "-47-");
     return name.toLowerCase();
 }
 
 function idToName(id, deleteLocation){
+    id = id.replaceAll("-47-", "/");
     id = id.replaceAll("-", " ");
 
     if(deleteLocation === true){
@@ -87,6 +89,7 @@ function doubleCheckDisasterName(disasterName){
 }
 
 function idToCountry(id){
+    id = id.replaceAll("-47-", "/");
     id = id.replaceAll("-", " ");
     id = id.substring(id.indexOf(" ") + 1);
 
