@@ -119,6 +119,14 @@ function replaceFromCharToAscii(word){
     return word;
 }
 
+function replaceForRegex(word){
+    word = word.replaceAll(".", "\\.");
+    word = word.replaceAll("(", "\\(");
+    word = word.replaceAll(")", "\\)");
+
+    return word;
+}
+
 function selectObject(array, selectedElement, selectedCountry=undefined){
     for (const element of array){
         if (element.name.toLowerCase() === selectedElement.toLowerCase()){

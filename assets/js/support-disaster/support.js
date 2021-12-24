@@ -74,7 +74,7 @@ function searchDisaster(){
 
 function containsDisaster(disaster){
     disaster = disaster.name.toLowerCase();
-    const search = document.querySelector("#name").value.toLowerCase();
+    const search = replaceForRegex(document.querySelector("#name").value.toLowerCase());
     const regex = new RegExp(`.*${search}.*`);
     return regex.test(disaster);
 }
