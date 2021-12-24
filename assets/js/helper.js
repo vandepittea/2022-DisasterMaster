@@ -89,23 +89,12 @@ function doubleCheckDisasterName(disasterName){
 function idToCountry(id){
     id = id.replaceAll("-", " ");
     id = id.substring(id.indexOf(" ") + 1);
-    id = firstLetterOfEachWordCapitalLetter(id);
 
-    if(countries.includes(id) === false){
+    if(countries.map(country => country.toLowerCase()).includes(id.toLowerCase()) === false){
         id = idToCountry(id);
     }
 
     return id;
-}
-
-function firstLetterOfEachWordCapitalLetter(word){
-    const arrayWords = word.split(" ");
-
-    for(let i = 0; i < arrayWords.length; i++){
-        arrayWords[i] = arrayWords[i].charAt(0).toUpperCase() + arrayWords[i].slice(1);
-    }
-
-    return arrayWords.join(" ");
 }
 
 function selectObject(array, selectedElement, selectedCountry=undefined){
