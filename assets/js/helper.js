@@ -111,7 +111,7 @@ function firstLetterOfEachWordCapitalLetter(word){
 
 function selectObject(array, selectedElement, selectedCountry=undefined){
     for (const element of array){
-        if (element.name === selectedElement){
+        if (element.name.toLowerCase() === selectedElement.toLowerCase()){
             if(selectedCountry !== undefined){
                 if(element.location === selectedCountry){
                     return element;
