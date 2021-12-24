@@ -8,9 +8,10 @@ function selectSupportableDisaster(e) {
 
     const $article = e.target.closest("article");
     const $form = e.target.closest("form");
-    const idDisaster = $article.id;
 
     if ($article && $form == null) {
+        const idDisaster = $article.id;
+
         if(!(document.querySelector(`#${idDisaster} .thankyou`) || document.querySelector(`#${idDisaster} .success`))){
             showForm($article.id);
         }
