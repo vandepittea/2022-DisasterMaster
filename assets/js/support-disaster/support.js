@@ -194,7 +194,7 @@ function grantOfSupport(idDisaster, disasterName, countryName, valueButton){
 }
 
 function grantOfAid(idDisaster, selectedDisaster, submittedDisastersLocalStorage, indexSubmittedDisastersLocalStorage){
-    const aidPackage = document.querySelector("#support-package").value;
+    const aidPackage = document.querySelector(`#${idDisaster} #support-package`).value;
     let aidProgress = selectedDisaster.aidProgress;
 
     aidProgress += determineAidProgress(aidPackage);
