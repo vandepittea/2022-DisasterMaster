@@ -109,7 +109,7 @@ function selectArticle(article, selector){
 
 function selectArticleWhenRerender(article){
     if(article !== undefined){
-        const idArticle = nameToImageOrID(article)
+        const idArticle = nameToImageOrID(article);
         if(document.querySelector(`#${idArticle}`)){
             document.querySelector(`#${idArticle}`).classList.add("selected");
         }

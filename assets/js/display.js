@@ -25,7 +25,7 @@ function renderBasicInfo(disaster, selector){
             <img src="images/${imageName}.svg" alt="${disaster.name}" title="${disaster.name}">
         </figure>
         <dl></dl>
-    </article>`
+    </article>`;
 }
 
 function renderAid(disaster, selector){
@@ -45,7 +45,7 @@ function renderAid(disaster, selector){
                             <li>goal: <span>${disaster.currencyGoal}</span></li>
                         </ul>
                     </li>
-                </ul>`
+                </ul>`;
     }
     else{
         return '';
@@ -59,7 +59,7 @@ function displayThankYou(message, selector) {
 }
 
 function renderAvailableAid(aid, selector) {
-    const $location = document.querySelector(selector)
+    const $location = document.querySelector(selector);
     $location.innerHTML = "";
 
     for(const assistance of aid){
@@ -123,7 +123,7 @@ function showForm(idDisaster){
                 <input type="submit" value="Take my money!"/>
             </form>`;
 
-    showExtraInformationAfterUlDisaster(`#${idDisaster}`, "form", form)
+    showExtraInformationAfterUlDisaster(`#${idDisaster}`, "form", form);
 }
 
 function showConfirmationMessage(idDisaster, disasterObject){

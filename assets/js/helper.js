@@ -114,7 +114,7 @@ function selectObject(array, selectedElement, selectedCountry=undefined){
         if (element.name === selectedElement){
             if(selectedCountry !== undefined){
                 if(element.location === selectedCountry){
-                    return element
+                    return element;
                 }
             }
             else{

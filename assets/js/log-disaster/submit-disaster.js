@@ -26,7 +26,7 @@ function saveDisaster(disaster, countryName, aidName, aidGoal, currencyGoal){
         "aidGoal": aidGoal,
         "currencyGoal": currencyGoal,
         "requestedAid": aidName
-    }
+    };
 }
 
 // Add additional functions below
