@@ -29,7 +29,6 @@ function nameToImageOrID(name){
 
 function idToName(id, deleteLocation){
     id = id.replaceAll("-", " ");
-    id = id.charAt(0).toUpperCase() + id.slice(1);
 
     if(deleteLocation === true){
         id = deleteLocationOfId(id);
@@ -113,7 +112,7 @@ function selectObject(array, selectedElement, selectedCountry=undefined){
     for (const element of array){
         if (element.name.toLowerCase() === selectedElement.toLowerCase()){
             if(selectedCountry !== undefined){
-                if(element.location === selectedCountry){
+                if(element.location.toLowerCase() === selectedCountry.toLowerCase()){
                     return element;
                 }
             }
