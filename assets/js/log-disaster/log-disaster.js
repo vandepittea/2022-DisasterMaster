@@ -66,7 +66,6 @@ function selectAid(e){
 function containsCountry(suggest, country){
     country = country.toLowerCase();
     suggest = replaceForRegex(suggest);
-    console.log(suggest);
     const regex = new RegExp(`.*${suggest}.*`);
     return regex.test(country);
 }
