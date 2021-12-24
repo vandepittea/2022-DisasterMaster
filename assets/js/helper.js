@@ -123,6 +123,9 @@ function replaceForRegex(word){
     word = word.replaceAll(".", "\\.");
     word = word.replaceAll("(", "\\(");
     word = word.replaceAll(")", "\\)");
+    word = word.replaceAll("*", "\\*");
+    word = word.replaceAll("?", "\\?");
+    word = word.replaceAll("\\", "\\\\");
 
     return word;
 }
