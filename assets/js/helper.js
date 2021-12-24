@@ -23,13 +23,11 @@ function loadFromStorage(key) {
  ******************/
 
 function nameToImageOrID(name){
-    name = name.replaceAll(" ", "-");
-    name = name.replaceAll("/", "-47-");
+    name = replaceFromCharToAscii(name);
     return name.toLowerCase();
 }
 
 function idToName(id, deleteLocation){
-    id = id.replaceAll("-47-", "/");
     id = id.replaceAll("-", " ");
 
     if(deleteLocation === true){
@@ -89,8 +87,7 @@ function doubleCheckDisasterName(disasterName){
 }
 
 function idToCountry(id){
-    id = id.replaceAll("-47-", "/");
-    id = id.replaceAll("-", " ");
+    id = replaceFromAsciiToChar(id);
     id = id.substring(id.indexOf(" ") + 1);
 
     if(countries.map(country => country.toLowerCase()).includes(id.toLowerCase()) === false){
@@ -98,6 +95,28 @@ function idToCountry(id){
     }
 
     return id;
+}
+
+function replaceFromAsciiToChar(word){
+    word = word.replaceAll("-47-", "/");
+    word = word.replaceAll("-40-", "(");
+    word = word.replaceAll("-41-", ")");
+    word = word.replaceAll("-46-", ".");
+    word = word.replaceAll("-44-", ",");
+    word = word.replaceAll("-", " ");
+
+    return word;
+}
+
+function replaceFromCharToAscii(word){
+    word = word.replaceAll(" ", "-");
+    word = word.replaceAll("/", "-47-");
+    word = word.replaceAll("(", "-40-");
+    word = word.replaceAll(")", "-41-");
+    word = word.replaceAll(".", "-46-");
+    word = word.replaceAll(",", "-44-");
+
+    return word;
 }
 
 function selectObject(array, selectedElement, selectedCountry=undefined){
