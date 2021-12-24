@@ -105,6 +105,7 @@ button:hover {
 aside button {
     display: inline-block;
     margin-left: 0.5em;
+    width: 8em;
 }
 
 #sort-order {
