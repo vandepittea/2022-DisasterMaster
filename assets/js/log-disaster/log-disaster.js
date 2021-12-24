@@ -124,6 +124,6 @@ function navigationErrors(){
         alert("ERROR: click on a type of disaster.");
     }
     else if(selectedAid === undefined){
-        alert("ERROR: click on a aid to solve the disaster.");
+        alert("ERROR: click on an aid to solve the disaster.");
     }
 }
